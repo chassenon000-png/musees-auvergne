@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Musées d'Auvergne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE quiet and exact, a contemporary art museum's own catalogue
+   IDEA a white gallery: the chart is a framed print with its passe-partout and wall label, the site plan reads like a catalogue contents page
+   PICTURE the 2014-2024 curve hung in a thin black frame with a wide white mat, one line in Klein blue
+   COLOUR gallery white, ink #111, Klein blue #1f3fd1 for Auvergne only, grey #9b9b98 for France; night gallery #111 with the same blue lifted
+   TYPE Instrument Serif for titles and figures + Inter for labels and text
+   LAYOUT laptop: serif title over a wide airy row of figures, framed work left, wall label right; phone: title, work, label, figures */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#111111);--ink:light-dark(#111111,#ecebe8);--soft:light-dark(#62625f,#a8a7a2);--rule:light-dark(#dcdbd7,#2d2d2b);--mat:light-dark(#ffffff,#181817);--frame:light-dark(#111111,#3a3a38);--klein:light-dark(#1f3fd1,#6f86ff);--grey:light-dark(#9b9b98,#7d7d79);--wall:light-dark(#f6f6f4,#161615)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding-block:clamp(36px,5vw,80px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+nav{background:var(--bg);padding:18px max(5vw,16px);position:sticky;top:0;z-index:5;border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 26px}
+.logo{font:400 24px/1 "Instrument Serif",Georgia,serif;margin-right:auto;text-decoration:none;letter-spacing:-.01em}
+.logo em{font-style:italic}
+nav a.l{font-size:14px;text-decoration:none;color:var(--soft);padding:4px 0;border-bottom:1px solid transparent}
+nav a.l:hover,nav a.l:focus-visible{color:var(--ink);border-color:var(--ink);outline:none}
+nav a.l[aria-current]{color:var(--ink);border-color:var(--ink)}
+.head{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px 64px;align-items:end;padding-bottom:clamp(28px,4vw,48px);border-bottom:1px solid var(--rule)}
+h1{font:400 clamp(40px,5.4vw,72px)/1.02 "Instrument Serif",Georgia,serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 em{color:var(--klein)}
+.lede{color:var(--soft);margin:0;max-width:46ch;font-size:16.5px}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-bottom:1px solid var(--rule)}
+.fg{padding:22px 20px 22px 0}
+.fg+.fg{padding-left:24px;border-left:1px solid var(--rule)}
+.fg b{display:block;font:400 clamp(34px,4vw,52px)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.01em;white-space:nowrap}
+.fg small{display:block;font-size:13.5px;color:var(--soft);margin-top:8px;line-height:1.4}
+.fg.hot b{color:var(--klein)}
+.salon{background:var(--wall)}
+.gallery{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:48px;align-items:center}
+.frame{background:var(--mat);border:6px solid var(--frame);padding:clamp(16px,3vw,40px);box-shadow:0 1px 0 var(--rule),0 22px 34px -26px rgba(0,0,0,.45);margin:0}
+.fig{position:relative;height:clamp(290px,34vw,400px)}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font:13.5px Inter,sans-serif;fill:var(--soft);paint-order:stroke;stroke:var(--mat);stroke-width:4px}
+.cartel{font-size:14px;line-height:1.55}
+.cartel h2{font:400 26px/1.15 "Instrument Serif",Georgia,serif;margin:0}
+.cartel .it{font:italic 400 19px/1.3 "Instrument Serif",Georgia,serif;color:var(--soft);margin:2px 0 14px}
+.cartel .tech{color:var(--soft);margin:0 0 16px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.cartel p{margin:0 0 12px}
+.cartel .key{display:grid;gap:4px;margin:16px 0 0;color:var(--soft)}
+.cartel .key i{display:inline-block;width:22px;height:2px;vertical-align:middle;margin-right:10px}
+.tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--ink);font-size:13.5px;line-height:1.45;padding:8px 11px;opacity:0;transition:opacity .12s;white-space:nowrap}
+.tip b{font:400 18px "Instrument Serif",Georgia,serif}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+h2.sec{font:400 clamp(34px,4vw,52px)/1.05 "Instrument Serif",Georgia,serif;letter-spacing:-.01em;margin:0}
+.sechead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 64px;align-items:end;margin-bottom:32px}
+.sechead p{margin:0;color:var(--soft);max-width:52ch}
+.toc{border-top:1px solid var(--ink)}
+.room{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr) 170px;gap:8px 40px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--rule);text-decoration:none;transition:padding .25s}
+.room h3{font:400 clamp(26px,2.6vw,34px)/1.1 "Instrument Serif",Georgia,serif;margin:0}
+.room p{margin:0;color:var(--soft);max-width:62ch}
+.room .go{font-size:14px;white-space:nowrap;color:var(--soft);justify-self:end}
+.room .go::after{content:"  →";transition:margin .25s}
+.room:hover,.room:focus-visible{outline:none;padding-left:12px}
+.room:hover h3,.room:focus-visible h3{font-style:italic;color:var(--klein)}
+.room:hover .go,.room:focus-visible .go{color:var(--ink)}
+.room:focus-visible{box-shadow:inset 3px 0 0 var(--klein)}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;max-width:240px}
+.dots span{width:10px;height:10px;border-radius:50%;border:1px solid var(--ink)}
+.dots .h{background:var(--klein);border-color:var(--klein)}
+.dots .s{background:var(--grey);border-color:var(--grey)}
+.dots .b{background:var(--ink)}
+.dots .n{background:transparent;border-color:var(--grey)}
+.dkey{font-size:13px;color:var(--soft);margin-top:8px}
+.note{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 64px;border-top:1px solid var(--rule);padding-top:clamp(28px,4vw,48px)}
+.note h3{font:400 28px/1.15 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.note p{margin:0;max-width:58ch;color:var(--ink)}
+footer{border-top:1px solid var(--ink);font-size:13.5px;color:var(--soft)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+@media(max-width:900px){.head,.sechead,.note{grid-template-columns:minmax(0,1fr)}.gallery{grid-template-columns:minmax(0,1fr);gap:28px}.cartel{max-width:560px}}
+@media(max-width:700px){.room{grid-template-columns:minmax(0,1fr)}.room .go{justify-self:start}}
+@media(max-width:600px){.fg{padding:16px 10px 16px 0}.fg+.fg{padding-left:12px}.fg b{font-size:30px}.frame{border-width:4px;padding:12px 8px 8px}nav .wrap{gap:4px 16px}nav a.l{font-size:13.5px}}
+@media(prefers-reduced-motion:no-preference){#lineA,#lineF{transition:stroke-dashoffset 1.8s ease-out}}
+
+:root{--down:light-dark(#111111,#f2f1ee);--mid:light-dark(#808080,#8a8a86)}
+.dots .b{background:var(--down)!important;border-color:var(--down)!important}
+.dots .s{background:var(--mid)!important;border-color:var(--mid)!important}
+.dots .n{border-color:var(--mid)!important}
+[hidden]{display:none!important}
+.view{display:none}
+.view.on{display:block}
+.ptitle{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px 64px;align-items:end;padding-bottom:clamp(24px,3vw,40px);border-bottom:1px solid var(--rule);margin-bottom:clamp(24px,3vw,40px)}
+.ptitle h1{font-size:clamp(36px,4.6vw,60px)}
+.ptitle p{margin:0;color:var(--soft);max-width:50ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chip{font:500 14px Inter,sans-serif;min-height:40px;padding:8px 14px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.chip i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chip[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.chip:focus-visible{outline:2px solid var(--klein);outline-offset:2px}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start}
+.mapbox{background:var(--wall);border:1px solid var(--rule);position:relative;aspect-ratio:104/128;max-height:820px}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.mapbox .town{cursor:pointer}
+.mapbox .town:focus-visible{outline:none}
+.mapbox .town:focus-visible .halo,.mapbox .town.sel .halo{stroke:var(--klein);stroke-width:1.5px}
+.panel{position:sticky;top:96px}
+.panel h2{font:400 clamp(30px,3vw,40px)/1.05 "Instrument Serif",Georgia,serif;margin:0}
+.panel .dep{color:var(--soft);font-style:italic;font-family:"Instrument Serif",Georgia,serif;font-size:20px;margin:2px 0 18px}
+.mrow{border-top:1px solid var(--rule);padding:14px 0}
+.mrow:last-of-type{border-bottom:1px solid var(--rule)}
+.mrow b{font-weight:600;display:block}
+.mrow .nums{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--soft);margin-top:4px}
+.mrow .nums span{white-space:nowrap}
+.mrow .ev{font:400 22px/1 "Instrument Serif",Georgia,serif;color:var(--ink)}
+.mrow .ev.up{color:var(--klein)}
+.mrow a{font-size:14px;color:var(--soft)}
+.mrow a:hover{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--soft);margin-top:14px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px}
+.ext{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border:1px solid var(--ink);text-decoration:none;font-weight:500;margin-top:18px}
+.ext:hover{background:var(--ink);color:var(--bg)}
+.bars{border-top:1px solid var(--ink)}
+.brow{display:grid;grid-template-columns:minmax(0,20em) minmax(0,1fr) 5.5em;gap:16px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.brow .nm{line-height:1.3}
+.brow .nm small{display:block;color:var(--soft);font-size:13px}
+.track{position:relative;height:18px}
+.track .zero{position:absolute;top:-9px;bottom:-9px;width:1px;background:var(--ink)}
+.track .bar{position:absolute;top:3px;height:12px}
+.brow .val{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.axis{display:grid;grid-template-columns:minmax(0,20em) minmax(0,1fr) 5.5em;gap:16px;font-size:13px;color:var(--soft);padding:8px 0}
+.axis div{position:relative;height:16px}
+.axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 64px;margin-top:clamp(36px,5vw,64px)}
+.twocol h2{font:400 32px/1.1 "Instrument Serif",Georgia,serif;margin:0 0 6px}
+.twocol .sub{color:var(--soft);margin:0 0 18px;font-size:15px}
+.twocol.wide{margin-top:0;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+th{font-weight:500;color:var(--soft);border-bottom:1px solid var(--ink)}
+th button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:6px 0;min-height:32px}
+th button:hover,th button[aria-sort]{color:var(--ink)}
+td.up{color:var(--klein)}
+.deps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.dcell{padding:18px 18px 18px 0;border-bottom:1px solid var(--rule)}
+.dcell:nth-child(even){padding-left:18px;border-left:1px solid var(--rule)}
+.dcell h3{font:400 24px/1.1 "Instrument Serif",Georgia,serif;margin:0 0 4px}
+.dcell p{margin:0;color:var(--soft);font-size:14px}
+.dcell .sp{height:56px;margin-top:10px;position:relative}
+.dcell .sp svg{position:absolute;inset:0;width:100%;height:100%}
+.tl{border-top:1px solid var(--ink)}
+.ev2{display:grid;grid-template-columns:9.5em minmax(0,1fr) minmax(0,1.1fr);gap:12px 40px;padding:26px 0;border-bottom:1px solid var(--rule);align-items:start}
+.ev2 .yr{font:400 clamp(36px,4vw,52px)/1 "Instrument Serif",Georgia,serif}
+.ev2 .yr small{display:block;font:italic 400 18px/1.3 "Instrument Serif",Georgia,serif;color:var(--soft);margin-top:4px}
+.ev2 h3{font:600 17px/1.35 Inter,sans-serif;margin:0 0 6px}
+.ev2 p{margin:0;color:var(--soft)}
+.ev2 .gauge{font-size:13.5px;color:var(--soft)}
+.ev2 .gl{display:grid;grid-template-columns:5.5em minmax(0,1fr) 4.5em;gap:10px;align-items:center;margin-bottom:6px}
+.ev2 .gt{height:10px;background:var(--wall);position:relative}
+.ev2 .gt span{position:absolute;left:0;top:0;bottom:0}
+.ev2 .gl b{font-weight:500;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.ev2.key .yr{color:var(--klein)}
+.qs{counter-reset:q;border-top:1px solid var(--ink)}
+.q{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:8px 20px;padding:20px 0;border-bottom:1px solid var(--rule)}
+.q::before{counter-increment:q;content:counter(q);font:400 34px/1 "Instrument Serif",Georgia,serif;color:var(--klein)}
+.q h3{font:500 17px/1.4 Inter,sans-serif;margin:0 0 10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts span{font-size:14px;border:1px solid var(--rule);padding:6px 12px}
+.q .kind{font-size:13px;color:var(--soft);margin:-4px 0 10px;font-style:italic}
+.aside{background:var(--wall);padding:24px;border:1px solid var(--rule)}
+.aside h2{font:400 28px/1.1 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.aside p{margin:0 0 12px;color:var(--soft)}
+.prose h2{font:400 32px/1.1 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.prose p,.prose li{max-width:64ch}
+.prose ul{padding-left:1.1em;margin:0 0 12px}
+.prose section{padding:24px 0;border-top:1px solid var(--rule)}
+.dl{display:grid;gap:12px;margin-top:6px}
+.btn{font:500 15px Inter,sans-serif;min-height:48px;padding:12px 18px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;text-align:left;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn:focus-visible{outline:2px solid var(--klein);outline-offset:2px}
+.btn small{font-weight:400;opacity:.75;white-space:nowrap}
+.msg{font-size:14px;color:var(--soft);min-height:1.4em;margin:4px 0 0}
+.qr{background:#fff;padding:14px;border:1px solid var(--rule);width:min(220px,100%);aspect-ratio:1}
+.qr svg{width:100%;height:100%;display:block}
+.url{font-size:13.5px;overflow-wrap:anywhere;color:var(--soft)}
+.pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--ink);margin-top:clamp(36px,5vw,64px);padding-top:20px}
+.pager a{text-decoration:none;font:400 26px/1.2 "Instrument Serif",Georgia,serif;min-height:44px;display:inline-flex;align-items:center}
+.pager a:hover{color:var(--klein);font-style:italic}
+.pager small{display:block;font:13px Inter,sans-serif;color:var(--soft)}
+@media(max-width:900px){.ptitle,.mapgrid,.twocol,.twocol.wide{grid-template-columns:minmax(0,1fr)}.panel{position:static}.mapbox{max-width:640px}.ev2{grid-template-columns:7em minmax(0,1fr)}.ev2 .gauge{grid-column:2}}
+@media(max-width:600px){.brow,.axis{grid-template-columns:minmax(0,1fr) 4.6em;row-gap:4px}.brow .nm{grid-column:1/-1}.axis div:first-child{display:none}.brow .track{grid-column:1}.axis{grid-template-columns:minmax(0,1fr) 4.6em}.ev2{grid-template-columns:minmax(0,1fr)}.ev2 .gauge{grid-column:auto}.deps{grid-template-columns:minmax(0,1fr)}.dcell:nth-child(even){padding-left:0;border-left:0}.q{grid-template-columns:2.2em minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<nav aria-label="Navigation principale">
+  <div class="wrap">
+    <a class="logo" href="#accueil">Musées <em>d'Auvergne</em></a>
+    <a class="l" href="#accueil">Accueil</a>
+    <a class="l" href="#carte">La carte</a>
+    <a class="l" href="#chiffres">Les chiffres</a>
+    <a class="l" href="#chronologie">Chronologie</a>
+    <a class="l" href="#avis">Votre avis</a>
+    <a class="l" href="#donnees">Données &amp; méthode</a>
+  </div>
+</nav>
+
+<main>
+<div class="view" data-view="accueil">
+<header class="band" id="accueil" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="head">
+      <h1>Après le Covid, le public est revenu au musée. <em>En Auvergne, tout juste.</em></h1>
+      <p class="lede">En 2020, les musées ont fermé pendant des mois. J'ai suivi les 32 Musées de France de l'ancienne région Auvergne, de 2014 à 2024, pour voir si les visiteurs étaient revenus, et où.</p>
+    </div>
+    <div class="figs">
+      <div class="fg"><b>65,9 M</b><small>entrées dans les musées français en 2019</small></div>
+      <div class="fg hot"><b>23,8 M</b><small>en 2020, l'année des fermetures</small></div>
+      <div class="fg"><b>71,2 M</b><small>en 2024, un nouveau record</small></div>
+    </div>
+  </div>
+</header>
+
+<section class="salon band">
+  <div class="wrap gallery">
+    <figure class="frame">
+      <div class="fig" id="fig"><svg id="s" role="img" aria-label="Évolution de la fréquentation des musées, France et Auvergne, 2014 à 2024, indice 100 en 2019"></svg><div class="tip" id="tip"></div></div>
+    </figure>
+    <aside class="cartel">
+      <h2>La chute et le retour</h2>
+      <p class="it">France et Auvergne, 2014-2024</p>
+      <p class="tech">Fréquentation des Musées de France, indice 100 en 2019. Musées ayant des données chaque année : 547 en France, 15 en Auvergne.</p>
+      <p>En 2020, l'Auvergne perd la moitié de ses visiteurs, la France presque les deux tiers : les grands musées dépendent davantage des touristes étrangers.</p>
+      <p>En 2024, la France dépasse son niveau d'avant le Covid (106,9). L'Auvergne revient tout juste au sien (100,6).</p>
+      <div class="key"><span><i style="background:var(--klein)"></i>Auvergne</span><span><i style="background:var(--grey)"></i>France</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="band" id="salles">
+  <div class="wrap">
+    <div class="sechead">
+      <h2 class="sec">Les salles</h2>
+      <p>Le site se visite comme une exposition, une salle par question. Commencez par la carte pour situer les 32 musées, puis entrez dans les chiffres.</p>
+    </div>
+    <div class="toc">
+      <a class="room" href="#carte">
+        <h3>La carte</h3>
+        <div><p>Les 32 musées sur une carte uMap. La couleur dit si chacun a gagné ou perdu des visiteurs entre 2019 et 2024.</p>
+          <div class="dots" id="dots" aria-hidden="true"></div>
+          <div class="dkey">9 en hausse · 6 stables · 6 en baisse · 11 données incomplètes</div></div>
+        <span class="go">Voir la carte</span>
+      </a>
+      <a class="room" href="#chiffres">
+        <h3>Les chiffres</h3>
+        <p>Musée par musée. Le musée d'art Roger Quilliot, à Clermont-Ferrand, double son public (+112 %) ; celui de Lavaudieu perd presque tous ses visiteurs (-96 %).</p>
+        <span class="go">Explorer les graphiques</span>
+      </a>
+      <a class="room" href="#chronologie">
+        <h3>Chronologie</h3>
+        <p>De 2014 au record de 2024, en passant par les fermetures de mars 2020 et de l'hiver 2020-2021.</p>
+        <span class="go">Suivre la frise</span>
+      </a>
+      <a class="room" href="#avis">
+        <h3>Votre avis</h3>
+        <p>Deux minutes pour dire si vous allez au musée plus ou moins qu'avant.</p>
+        <span class="go">Répondre</span>
+      </a>
+      <a class="room" href="#donnees">
+        <h3>Données &amp; méthode</h3>
+        <p>Les sources, les calculs, les limites, et le fichier Excel à télécharger. Puy-de-Dôme : 13 musées ; Allier : 9 ; Cantal : 5 ; Haute-Loire : 5.</p>
+        <span class="go">Lire la méthode</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap note">
+    <div>
+      <h3>Pourquoi ce sujet</h3>
+      <p>J'habite à Clermont-Ferrand et je vais souvent au musée. Pendant le Covid, tout était fermé. Je me suis demandé si les visiteurs étaient vraiment revenus, ou si les musées des petites villes avaient perdu leur public pour de bon.</p>
+    </div>
+    <div>
+      <h3>Ce que montrent les données</h3>
+      <p>La moyenne cache des histoires très différentes. Les musées des villes, comme à Clermont-Ferrand ou à Riom, gagnent souvent des visiteurs. Certains petits musées ruraux, eux, en perdent beaucoup.</p>
+    </div>
+  </div>
+</section>
+
+
+</div>
+
+<div class="view" data-view="carte">
+<section class="band">
+  <div class="wrap">
+    <div class="ptitle">
+      <h1>Les musées des villes gagnent des visiteurs, <em>les petits musées ruraux en perdent.</em></h1>
+      <p>Chaque point est un musée, placé dans sa commune. La couleur montre l'évolution entre 2019 et 2024, la taille le nombre d'entrées. Choisissez une ville pour voir ses musées.</p>
+    </div>
+    <div class="chips" role="group" aria-label="Filtrer les musées">
+      <button class="chip" data-f="all" aria-pressed="true">Tous les musées</button>
+      <button class="chip" data-f="hausse" aria-pressed="false"><i style="background:var(--klein)"></i>En hausse</button>
+      <button class="chip" data-f="stable" aria-pressed="false"><i style="background:var(--mid)"></i>Stables</button>
+      <button class="chip" data-f="baisse" aria-pressed="false"><i style="background:var(--down)"></i>En baisse</button>
+      <button class="chip" data-f="données incomplètes" aria-pressed="false"><i style="border:1.5px solid var(--mid)"></i>Données incomplètes</button>
+    </div>
+    <div class="mapgrid">
+      <div>
+        <div class="mapbox"><svg id="map" viewBox="294 232 104 128" role="img" aria-label="Carte des 32 Musées de France en Auvergne"></svg></div>
+        <div class="legend"><span><i style="background:var(--klein)"></i>Hausse de plus de 10 %</span><span><i style="background:var(--mid)"></i>Stable, entre -10 % et +10 %</span><span><i style="background:var(--down)"></i>Baisse de plus de 10 %</span><span><i style="border:1.5px solid var(--mid)"></i>Données incomplètes</span></div>
+      </div>
+      <aside class="panel" id="panel" aria-live="polite"></aside>
+    </div>
+    <div class="twocol">
+      <div>
+        <h2>Les cartes interactives</h2>
+        <p class="sub">Les mêmes musées sur un vrai fond de carte. Sur Google Maps, chaque musée est placé à son adresse exacte. Sur uMap, on suit l'évolution des visiteurs.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px"><a class="ext" id="gmapLink" href="#" hidden>Ouvrir la carte Google Maps ↗</a><a class="ext" id="umapLink" href="#" hidden>Ouvrir la carte uMap ↗</a></div>
+      </div>
+      <div>
+        <h2>Comment lire la carte</h2>
+        <p class="sub">Un musée est « en hausse » s'il gagne plus de 10 % de visiteurs entre 2019 et 2024. Onze musées n'ont pas communiqué leurs chiffres pour une de ces deux années : ils sont dessinés en cercles vides.</p>
+      </div>
+    </div>
+    <nav class="pager" aria-label="Salles"><a href="#accueil"><span><small>Salle précédente</small>← Accueil</span></a><a href="#chiffres" style="text-align:right"><span><small>Salle suivante</small>Les chiffres →</span></a></nav>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="chiffres">
+<section class="band">
+  <div class="wrap">
+    <div class="ptitle">
+      <h1>Derrière la moyenne, <em>des musées qui ne vivent pas la même chose.</em></h1>
+      <p>Évolution du nombre d'entrées entre 2019, la dernière année avant le Covid, et 2024. Seuls les 21 musées qui ont des chiffres pour ces deux années sont comparés.</p>
+    </div>
+    <div class="axis" aria-hidden="true"><div></div><div id="axis"></div><div></div></div>
+    <div class="bars" id="bars"></div>
+    <p class="msg">Attention : pour un très petit musée, quelques centaines de visiteurs suffisent à faire une grosse variation. Le musée Marcel Sahut, à Volvic, passe de 1 102 à 2 878 entrées : +161 %.</p>
+
+    <div class="twocol">
+      <div>
+        <h2>Par département</h2>
+        <p class="sub">Total des entrées déclarées, 2014-2024. Le creux est toujours en 2020.</p>
+        <div class="deps" id="deps"></div>
+      </div>
+      <div>
+        <h2>Tous les musées</h2>
+        <p class="sub">Cliquez sur un titre de colonne pour trier.</p>
+        <div class="scroll"><table id="tbl"></table></div>
+      </div>
+    </div>
+    <nav class="pager" aria-label="Salles"><a href="#carte"><span><small>Salle précédente</small>← La carte</span></a><a href="#chronologie" style="text-align:right"><span><small>Salle suivante</small>Chronologie →</span></a></nav>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="chronologie">
+<section class="band">
+  <div class="wrap">
+    <div class="ptitle">
+      <h1>Dix ans de musées, <em>et une année à part.</em></h1>
+      <p>Les grandes dates de la fréquentation des Musées de France. La barre compare les entrées de chaque année au record de 2024 (71,2 millions).</p>
+    </div>
+    <div class="tl" id="tl"></div>
+    <nav class="pager" aria-label="Salles"><a href="#chiffres"><span><small>Salle précédente</small>← Les chiffres</span></a><a href="#avis" style="text-align:right"><span><small>Salle suivante</small>Votre avis →</span></a></nav>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="avis">
+<section class="band">
+  <div class="wrap">
+    <div class="ptitle">
+      <h1>Et vous, <em>êtes-vous retourné au musée ?</em></h1>
+      <p>Les chiffres disent combien de personnes entrent dans les musées. Ce questionnaire cherche à comprendre pourquoi. Il est anonyme et prend deux minutes.</p>
+    </div>
+    <div class="twocol wide">
+      <div class="qs" id="qs"></div>
+      <aside class="aside">
+        <h2>Répondre</h2>
+        <p>Le questionnaire se remplit en ligne. Les réponses servent uniquement à ce projet universitaire.</p>
+        <a class="ext" id="formLink" href="#" hidden>Ouvrir le questionnaire</a>
+        <p style="margin-top:18px">Huit questions : votre ville, votre âge, vos habitudes, et ce qui vous donne envie, ou pas, d'aller au musée.</p>
+      </aside>
+    </div>
+    <nav class="pager" aria-label="Salles"><a href="#chronologie"><span><small>Salle précédente</small>← Chronologie</span></a><a href="#donnees" style="text-align:right"><span><small>Salle suivante</small>Données &amp; méthode →</span></a></nav>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="donnees">
+<section class="band">
+  <div class="wrap">
+    <div class="ptitle">
+      <h1>Données <em>&amp; méthode</em></h1>
+      <p>D'où viennent les chiffres, comment je les ai calculés, et ce qu'ils ne peuvent pas dire.</p>
+    </div>
+    <div class="twocol wide">
+      <div class="prose">
+        <section style="border-top:0;padding-top:0">
+          <h2>Source</h2>
+          <p>Ministère de la Culture, jeu de données « Fréquentation des Musées de France », publié sur data.gouv.fr. Il donne, pour chaque musée et chaque année de 2014 à 2024, le nombre total d'entrées, payantes et gratuites.</p>
+        </section>
+        <section>
+          <h2>Périmètre</h2>
+          <p>Les 32 Musées de France de l'ancienne région Auvergne : Puy-de-Dôme (13 musées), Allier (9), Cantal (5) et Haute-Loire (5).</p>
+        </section>
+        <section>
+          <h2>Méthode</h2>
+          <ul>
+            <li>Évolution 2019-2024 : (entrées 2024 - entrées 2019) / entrées 2019, calculée seulement si les deux années sont renseignées et non nulles.</li>
+            <li>Catégories : hausse au-dessus de +10 %, baisse au-dessous de -10 %, stable entre les deux.</li>
+            <li>Comparaison France / Auvergne : indice 100 en 2019, calculé seulement sur les musées qui ont des chiffres pour toutes les années (547 en France, 15 en Auvergne).</li>
+            <li>Carte : chaque musée est placé au centre de sa commune.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Limites</h2>
+          <ul>
+            <li>11 musées n'ont pas de données complètes : fermeture, travaux, ou chiffres non communiqués.</li>
+            <li>Le nombre de musées qui déclarent leurs chiffres change d'une année à l'autre, donc les totaux par département ne sont pas strictement comparables.</li>
+            <li>Pour les très petits musées, les pourcentages peuvent être trompeurs.</li>
+            <li>Les données disent combien de visiteurs, pas qui ils sont ni pourquoi ils viennent : c'est le rôle du questionnaire.</li>
+          </ul>
+        </section>
+      </div>
+      <aside>
+        <div class="aside">
+          <h2>Télécharger</h2>
+          <p>Les données de l'Auvergne, nettoyées et prêtes à l'emploi.</p>
+          <div class="dl">
+            <button class="btn" id="dlx">Tableau Excel <small>.xlsx · 16 Ko</small></button>
+            <button class="btn" id="dlc">Données brutes <small>.csv</small></button>
+          </div>
+          <p class="msg" id="dlmsg"></p>
+        </div>
+        <div style="margin-top:28px">
+          <h2 style="font:400 28px/1.1 'Instrument Serif',Georgia,serif;margin:0 0 12px">Partager le site</h2>
+          <div class="qr" id="qr" role="img" aria-label="QR code vers ce site"></div>
+          <p class="url">chassenon000-png.github.io/musees-auvergne</p>
+        </div>
+      </aside>
+    </div>
+    <nav class="pager" aria-label="Salles"><a href="#avis"><span><small>Salle précédente</small>← Votre avis</span></a><a href="#accueil" style="text-align:right"><span><small>Salle suivante</small>Accueil →</span></a></nav>
+  </div>
+</section>
+</div>
+</main>
+
+<footer class="band" style="padding-block:26px">
+  <div class="wrap">
+    <span>Musées d'Auvergne · projet de data visualisation, Université Clermont Auvergne, 2026</span>
+    <span>Source : Ministère de la Culture, « Fréquentation des Musées de France », data.gouv.fr</span>
+  </div>
+</footer>
+<script>
+
+{
+const Y=[2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const FR=[95.8,92.1,88.1,93.3,99.1,100,34.9,44.6,94.6,107,106.9];
+const AU=[100.4,87.4,112.9,104.8,105.9,100,50.5,52.2,96.1,83.4,100.6];
+const FRn=[53073931,51067828,48852434,51684550,54932605,55420713,19348434,24743814,52450020,59316387,59257136];
+const AUn=[294879,256760,331454,307787,310864,293658,148303,153181,282314,245032,295537];
+const s=document.getElementById('s'),tip=document.getElementById('tip'),fig=document.getElementById('fig');
+const nf=n=>n.toLocaleString('fr-FR');
+const df=n=>n.toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1});
+let geo=null,first=true;
+const draw=()=>{
+  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
+  const narrow=W<520;
+  const m={l:narrow?30:38,r:narrow?12:124,t:14,b:30};
+  const x=i=>m.l+i*(W-m.l-m.r)/(Y.length-1);
+  const lo=20,hi=120,y=v=>m.t+(hi-v)/(hi-lo)*(H-m.t-m.b);
+  let g='';
+  g+=`<rect x="${x(5.5)}" y="${m.t}" width="${x(7.5)-x(5.5)}" height="${H-m.t-m.b}" fill="var(--wall)"/>`;
+  g+=`<text x="${(x(5.5)+x(7.5))/2}" y="${m.t+16}" text-anchor="middle" style="font-style:italic">fermetures</text>`;
+  for(let v=lo;v<=hi;v+=20){
+    g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v===100?'var(--ink)':'var(--rule)'}" stroke-width="${v===100?0.8:1}" stroke-dasharray="${v===100?'2 4':''}"/>`;
+    g+=`<text x="${m.l-8}" y="${y(v)+5}" text-anchor="end">${v}</text>`;
+  }
+  Y.forEach((yr,i)=>{if(narrow&&i%2)return;g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${narrow?"'"+String(yr).slice(2):yr}</text>`});
+  const path=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1)).join('');
+  g+=`<path id="lineF" d="${path(FR)}" fill="none" stroke="var(--grey)" stroke-width="1.6" stroke-linejoin="round"/>`;
+  g+=`<path id="lineA" d="${path(AU)}" fill="none" stroke="var(--klein)" stroke-width="2.6" stroke-linejoin="round"/>`;
+  FR.forEach((v,i)=>g+=`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--mat)" stroke="var(--grey)" stroke-width="1.6"/>`);
+  AU.forEach((v,i)=>g+=`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="var(--klein)" stroke="var(--mat)" stroke-width="2"/>`);
+  const L=Y.length-1;
+  if(!narrow){
+    g+=`<text x="${x(L)+10}" y="${y(FR[L])-2}">France ${df(FR[L])}</text>`;
+    g+=`<text x="${x(L)+10}" y="${y(AU[L])+16}" style="fill:var(--klein)">Auvergne ${df(AU[L])}</text>`;
+  }
+  g+=`<text x="${x(6)}" y="${y(AU[6])+22}" text-anchor="middle" style="fill:var(--klein)">50,5</text>`;
+  g+=`<text x="${x(6)}" y="${y(FR[6])+22}" text-anchor="middle">34,9</text>`;
+  g+=`<line id="cross" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="var(--ink)" stroke-width=".8" opacity="0"/>`;
+  g+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="transparent"/>`;
+  s.innerHTML=g;
+  geo={x,m,W};
+  if(first&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    first=false;
+    ['lineA','lineF'].forEach(id=>{const p=document.getElementById(id),len=p.getTotalLength();p.style.strokeDasharray=len;p.style.strokeDashoffset=len;requestAnimationFrame(()=>requestAnimationFrame(()=>p.style.strokeDashoffset=0))});
+  }
+};
+const ro=new ResizeObserver(draw);ro.observe(s);
+const show=(cx,cy)=>{
+  if(!geo)return;
+  const b=s.getBoundingClientRect(),px=cx-b.left,step=(geo.W-geo.m.l-geo.m.r)/(Y.length-1);
+  let i=Math.round((px-geo.m.l)/step);i=Math.max(0,Math.min(Y.length-1,i));
+  const c=document.getElementById('cross');c.setAttribute('x1',geo.x(i));c.setAttribute('x2',geo.x(i));c.setAttribute('opacity',1);
+  tip.innerHTML=`<b>${Y[i]}</b><br><span class="dot" style="background:var(--klein)"></span>Auvergne ${df(AU[i])} · ${nf(AUn[i])} entrées<br><span class="dot" style="background:var(--grey)"></span>France ${df(FR[i])} · ${nf(FRn[i])} entrées`;
+  const fb=fig.getBoundingClientRect();let lx=geo.x(i)+14;
+  tip.style.opacity=1;const tw=tip.offsetWidth;if(lx+tw>fb.width)lx=geo.x(i)-tw-14;if(lx<0)lx=4;
+  tip.style.left=lx+'px';tip.style.top=Math.max(4,Math.min(fb.height-tip.offsetHeight-4,cy-b.top-30))+'px';
+};
+s.addEventListener('pointermove',e=>show(e.clientX,e.clientY));
+s.addEventListener('pointerdown',e=>show(e.clientX,e.clientY));
+s.addEventListener('pointerleave',()=>{tip.style.opacity=0;const c=document.getElementById('cross');if(c)c.setAttribute('opacity',0)});
+document.getElementById('dots').innerHTML=[['h',9],['s',6],['b',6],['n',11]].map(([c,n])=>`<span class="${c}"></span>`.repeat(n)).join('');
+}
+
+</script>
+<script>
+const SITE={"mus": [{"n": "Musée rural de la Sologne bourbonnaise", "v": "Beaulon", "d": "Allier", "x": 358.74, "y": 247.4, "h": [0, 0, 0, 0, 0, 0, null, 0, 0, 0, 0], "e": null, "c": "données incomplètes"}, {"n": "Musée Charles-Louis Philippe", "v": "Cérilly", "d": "Allier", "x": 326.46, "y": 246.57, "h": [426, 201, 185, null, 168, 52, 44, 140, 106, 120, 87], "e": 67.3, "c": "hausse"}, {"n": "Musée municipal", "v": "Gannat", "d": "Allier", "x": 340.83, "y": 275.13, "h": [1070, 1522, 2703, 3311, 1213, 1322, 570, 864, 1516, null, null], "e": null, "c": "données incomplètes"}, {"n": "Musée des musiques populaires (vieux château)", "v": "Montluçon", "d": "Allier", "x": 318.12, "y": 261.84, "h": [24803, 25030, 15617, 23187, 22674, 24056, 13286, 15440, 19017, 20376, 20969], "e": -12.8, "c": "baisse"}, {"n": "Musée Anne de Beaujeu", "v": "Moulins", "d": "Allier", "x": 345.89, "y": 249.41, "h": [28034, 23635, 28962, 29121, 30053, 30572, 18216, 17178, 29444, 28693, 28221], "e": -7.7, "c": "stable"}, {"n": "Centre national du costume de scène et de la scénographie", "v": "Moulins", "d": "Allier", "x": 345.89, "y": 249.41, "h": [67333, 60488, 72898, 68798, 94164, 90863, 52148, 43193, 99188, 66684, 86834], "e": -4.4, "c": "stable"}, {"n": "Musée gallo-romain", "v": "Néris-les-Bains", "d": "Allier", "x": 320.24, "y": 264.76, "h": [690, 1412, 1430, 1137, 1027, 1001, 551, 639, 1121, null, null], "e": null, "c": "données incomplètes"}, {"n": "Musée Saint-Marc", "v": "Souvigny", "d": "Allier", "x": 340.5, "y": 251.24, "h": [null, null, 6870, 9584, 9694, 11294, 5243, 5427, 9522, 10000, null], "e": null, "c": "données incomplètes"}, {"n": "Musée des arts africains et asiatiques (maison du missionnaire)", "v": "Vichy", "d": "Allier", "x": 349.55, "y": 273.55, "h": [4609, null, null, 4800, 4952, 4952, 2192, 2529, 5323, 5004, null], "e": null, "c": "données incomplètes"}, {"n": "Musée des sciences", "v": "Aurillac", "d": "Cantal", "x": 311.35, "y": 339.61, "h": [9500, 9450, 10678, 9767, 9835, 9238, 5993, 7191, 8938, 8874, 0], "e": null, "c": "données incomplètes"}, {"n": "Musée d'art et d'archéologie", "v": "Aurillac", "d": "Cantal", "x": 311.35, "y": 339.61, "h": [20867, 17362, 20355, 16555, 12238, 9174, 4606, 8228, 10786, 10516, 12163], "e": 32.6, "c": "hausse"}, {"n": "Écomusée de la Margeride", "v": "Ruynes-en-Margeride", "d": "Cantal", "x": 341.92, "y": 335.66, "h": [7593, 8809, 9314, 9837, 14309, 13320, 2856, 5193, 5381, 6171, 5460], "e": -59.0, "c": "baisse"}, {"n": "Musée de la haute Auvergne ", "v": "Saint-Flour", "d": "Cantal", "x": 336.88, "y": 333.74, "h": [6882, 5114, 5264, 6806, 8193, 6212, 3484, 3453, 6058, 6040, 4992], "e": -19.6, "c": "baisse"}, {"n": "Musée Alfred Douët", "v": "Saint-Flour", "d": "Cantal", "x": 336.88, "y": 333.74, "h": [2286, 2035, 2631, 3031, 4077, 4088, 2344, 2562, 3492, 3860, 3890], "e": -4.8, "c": "stable"}, {"n": "Musée de paléontologie", "v": "Chilhac", "d": "Haute-Loire", "x": 350.5, "y": 327.03, "h": [2684, 2304, 2248, null, 1690, 1732, 1624, 1171, 1470, 1526, 1800], "e": 3.9, "c": "stable"}, {"n": "Musée des arts et traditions populaires", "v": "Lavaudieu", "d": "Haute-Loire", "x": 350.97, "y": 321.09, "h": [9349, 9870, 10864, 9811, 6534, 7636, 3380, 3904, 6850, 213, 278], "e": -96.4, "c": "baisse"}, {"n": "Musée Crozatier", "v": "Le Puy-en-Velay", "d": "Haute-Loire", "x": 367.78, "y": 333.05, "h": [3082, 0, 0, 0, 21700, 42559, 23108, 23802, 37447, 72459, 49889], "e": 17.2, "c": "hausse"}, {"n": "Musée des manufactures de dentelles", "v": "Retournac", "d": "Haute-Loire", "x": 373.44, "y": 324.12, "h": [null, null, null, null, 3046, 2863, 1372, 3075, 3492, 5729, 5427], "e": 89.6, "c": "hausse"}, {"n": "Musée de la ferblanterie", "v": "Saint-Arcons-d'Allier", "d": "Haute-Loire", "x": 355.09, "y": 331.57, "h": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "e": null, "c": "données incomplètes"}, {"n": "Musée de la dentelle", "v": "Arlanc", "d": "Puy-de-Dôme", "x": 361.39, "y": 312.7, "h": [1020, 780, 1169, 1346, 1086, 1538, 950, 1014, 1779, 931, 768], "e": -50.1, "c": "baisse"}, {"n": "Musée Bargoin", "v": "Clermont-Ferrand", "d": "Puy-de-Dôme", "x": 336.6, "y": 292.8, "h": [30114, 15306, 18036, 25095, 23043, 17891, 9056, 9441, 18677, 14717, 19867], "e": 11.0, "c": "hausse"}, {"n": "Muséum d'histoire naturelle Lecoq", "v": "Clermont-Ferrand", "d": "Puy-de-Dôme", "x": 336.6, "y": 292.8, "h": [24122, 29750, 31345, 44786, 29615, 28272, 11462, 10560, 17987, 26921, 28143], "e": -0.5, "c": "stable"}, {"n": "Musée d'art Roger Quilliot", "v": "Clermont-Ferrand", "d": "Puy-de-Dôme", "x": 336.6, "y": 292.8, "h": [33310, 23777, 78386, 34561, 28927, 22542, 11414, 13628, 31306, 26306, 47845], "e": 112.2, "c": "hausse"}, {"n": "Musée de céramique gallo-romaine", "v": "Lezoux", "d": "Puy-de-Dôme", "x": 347.83, "y": 290.07, "h": [13324, 8824, 11088, 9626, 11461, 9778, 4887, 5006, 9294, 8539, 10843], "e": 10.9, "c": "hausse"}, {"n": "Musée des pénitents blancs", "v": "Marsac-en-Livradois", "d": "Puy-de-Dôme", "x": 361.39, "y": 309.12, "h": [281, 273, null, 212, 129, 147, null, 76, 133, null, null], "e": null, "c": "données incomplètes"}, {"n": "Musée paléontologique", "v": "Menat", "d": "Puy-de-Dôme", "x": 329.65, "y": 274.91, "h": [377, 504, 450, 281, null, null, null, null, null, null, null], "e": null, "c": "données incomplètes"}, {"n": "Musée lapidaire", "v": "Mozac", "d": "Puy-de-Dôme", "x": 336.82, "y": 286.47, "h": [0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 500], "e": null, "c": "données incomplètes"}, {"n": "Musée municipal", "v": "Murol", "d": "Puy-de-Dôme", "x": 331.05, "y": 303.97, "h": [4915, 4846, 5270, 4428, 3765, 4233, 2605, 4035, 4022, 5618, null], "e": null, "c": "données incomplètes"}, {"n": "Musée Francisque Mandet", "v": "Riom", "d": "Puy-de-Dôme", "x": 337.59, "y": 286.41, "h": [13935, 13786, 15979, 14451, 16008, 11202, 1707, 6295, 6467, null, 19319], "e": 72.5, "c": "hausse"}, {"n": "Musée régional d'Auvergne", "v": "Riom", "d": "Puy-de-Dôme", "x": 337.59, "y": 286.41, "h": [1330, 2467, 2610, 3094, 2276, 3012, 2389, 2054, 1384, 2270, 3080], "e": 2.3, "c": "stable"}, {"n": "Musée municipal de la coutellerie", "v": "Thiers", "d": "Puy-de-Dôme", "x": 354.28, "y": 288.38, "h": [24512, 23513, 22915, 22133, 22214, 24704, 7825, 12327, 21671, 22795, 22184], "e": -10.2, "c": "baisse"}, {"n": "Musée Marcel Sahut", "v": "Volvic", "d": "Puy-de-Dôme", "x": 334.71, "y": 287.63, "h": [0, null, 906, 1162, 1156, 1102, 759, 618, 1714, 2224, 2878], "e": 161.2, "c": "hausse"}], "deps": {"03": ["331.4,236.2 328.8,239.6 327.3,239.8 325.6,241.5 323.7,239.4 318.6,244.6 318.6,247.6 319.5,248.3 319.7,249.9 317.1,251.9 314.6,251.2 309.9,252.1 307.4,254.9 306.5,256.9 306.7,256.9 308.9,260.1 308.9,262.3 310.2,264.0 311.6,262.3 313.1,265.0 315.2,265.7 317.3,270.6 317.4,272.1 320.2,274.3 321.8,273.6 323.0,270.7 324.2,270.4 324.2,268.8 326.2,268.7 326.4,269.7 329.0,266.8 331.9,266.8 332.4,267.8 331.0,269.7 333.1,271.9 333.4,273.3 338.2,276.0 344.0,276.9 345.8,276.7 348.3,277.2 350.5,275.9 352.3,276.7 352.6,279.1 354.8,279.6 357.7,279.5 358.6,281.5 361.2,282.6 361.3,281.6 365.9,281.4 365.5,270.7 364.2,268.0 364.7,265.9 367.9,265.4 368.0,265.2 371.9,262.2 372.1,254.8 370.8,252.9 367.8,252.9 366.6,251.4 363.4,251.4 362.5,250.2 362.5,247.4 358.7,240.2 356.8,238.9 353.2,243.8 351.7,244.2 351.1,241.7 349.4,241.0 348.7,242.5 345.8,242.5 345.5,240.8 343.5,241.9 341.5,243.1 339.2,240.6 336.0,239.1 335.8,236.6"], "15": ["321.9,311.3 323.5,314.5 326.5,314.5 327.8,313.3 329.8,314.4 330.8,314.5 333.4,318.5 336.1,318.6 336.8,317.3 338.2,317.5 339.0,319.8 343.3,319.9 344.2,322.9 345.4,324.1 345.7,327.7 346.8,329.1 348.7,329.3 347.6,330.3 346.8,330.7 347.4,331.4 346.5,333.0 348.5,334.2 349.5,335.8 349.5,337.4 344.7,339.1 343.2,342.4 339.8,340.2 337.1,348.6 334.4,354.8 332.7,352.8 332.2,347.4 330.4,347.4 329.5,342.1 325.8,342.5 325.3,339.2 324.7,338.3 319.3,342.9 319.3,347.3 318.0,347.4 317.5,351.7 316.1,352.2 315.1,354.6 309.2,354.6 308.7,353.8 306.0,353.8 304.4,356.5 302.3,356.2 303.2,353.1 300.9,351.9 303.2,346.3 300.1,343.9 299.1,337.6 301.5,335.9 300.8,334.0 299.7,332.8 301.2,331.0 302.6,331.0 303.6,328.0 304.4,326.4 303.8,323.0 306.3,319.6 309.7,317.5 309.9,312.4 311.5,313.2 313.4,315.3 315.3,315.3 316.5,313.9 315.6,311.7 316.1,309.6"], "43": ["337.6,317.4 338.4,316.2 341.8,315.7 343.7,314.2 345.7,314.0 345.7,312.8 347.1,312.2 347.5,312.9 348.3,312.5 349.7,313.3 352.0,313.1 354.1,312.3 355.5,313.5 357.0,313.5 358.2,315.7 360.1,316.5 361.1,314.3 362.5,315.4 365.4,315.5 366.4,313.6 368.2,315.2 370.5,315.9 371.2,315.2 375.1,316.4 379.3,313.0 381.3,312.8 387.4,315.5 387.0,319.1 390.1,318.9 392.5,321.6 391.4,326.3 388.7,327.4 387.6,329.3 388.8,333.0 386.1,333.1 385.8,336.6 382.9,336.9 381.4,341.6 376.8,341.6 371.9,345.2 369.1,349.4 364.9,344.0 361.3,344.7 360.5,342.2 358.6,342.2 358.3,344.4 353.4,345.9 350.0,337.3 349.5,337.4 349.6,335.8 348.5,334.2 346.5,333.0 347.5,331.5 346.7,330.7 347.6,330.4 348.8,329.3 346.8,329.1 345.8,327.7 345.4,324.1 344.2,322.9 343.3,319.9 339.0,319.8 338.2,317.5"], "63": ["320.2,274.3 321.8,273.6 323.0,270.7 324.2,270.4 324.2,268.9 326.2,268.7 326.4,269.6 329.0,266.8 331.9,266.8 332.4,267.8 331.0,269.7 333.1,271.9 333.4,273.3 338.2,276.0 343.9,276.9 345.7,276.7 348.3,277.2 350.5,275.8 352.2,276.7 352.6,279.1 354.7,279.6 357.7,279.5 358.6,281.5 361.2,282.5 361.1,283.3 364.1,285.8 362.5,287.5 361.9,291.6 364.2,294.7 366.2,299.6 371.2,302.8 372.8,309.0 369.2,312.4 369.8,314.7 371.2,315.2 370.5,315.9 368.2,315.2 366.5,313.5 365.4,315.5 362.5,315.4 361.1,314.2 360.1,316.5 358.2,315.7 357.0,313.5 355.5,313.5 354.1,312.3 352.0,313.1 349.7,313.3 348.3,312.5 347.5,312.9 347.1,312.1 345.7,312.8 345.7,314.0 343.7,314.2 341.8,315.7 338.4,316.2 337.6,317.4 336.8,317.3 336.1,318.6 333.4,318.5 330.8,314.5 329.8,314.4 327.8,313.3 326.5,314.5 323.5,314.5 321.9,311.3 316.1,309.6 316.5,308.3 315.9,305.1 314.8,303.8 314.8,301.1 316.5,298.3 316.1,295.6 311.7,291.3 311.4,289.6 317.0,286.4 317.6,283.7 319.9,282.0 319.1,278.4 317.6,276.5 317.4,272.2"]}, "nb": {"23": ["278.1,257.0 279.8,258.2 282.1,258.0 282.8,258.4 286.2,258.5 287.4,255.5 296.8,256.7 300.4,257.6 306.6,256.8 308.9,260.1 308.9,262.3 310.2,263.9 311.5,262.4 313.1,265.0 315.2,265.7 317.3,270.6 317.6,276.5 319.1,278.4 319.9,282.0 317.6,283.7 317.0,286.4 311.4,289.6 311.7,291.2 315.7,295.2 313.8,296.7 310.1,296.7 308.8,298.5 306.6,298.5 304.7,296.6 303.9,295.4 299.2,295.4 298.2,294.0 296.7,294.0 295.8,296.0 292.8,296.7 292.5,297.0 291.6,296.5 291.2,294.1 292.5,294.0 292.6,293.0 290.1,291.3 287.5,290.1 287.8,287.7 287.0,287.6 286.0,289.1 282.7,289.3 280.9,289.0 280.9,287.3 283.1,285.4 281.7,283.5 278.2,284.5 278.8,276.7 277.2,275.1 275.5,271.0 273.1,270.3 272.6,268.1 274.9,263.6 274.8,260.8"], "19": ["296.7,294.0 295.9,296.1 292.8,296.7 291.6,298.7 290.1,298.7 288.1,298.1 286.6,300.6 284.4,300.8 282.9,303.5 281.1,303.5 279.6,304.9 275.9,304.5 274.7,306.5 273.3,306.4 270.8,309.4 268.5,308.6 267.4,310.7 268.3,312.8 270.4,314.5 266.6,317.9 266.6,320.6 268.1,321.3 266.6,323.2 268.7,324.9 267.1,326.8 268.8,328.0 273.0,327.8 272.8,331.9 274.4,334.4 275.0,334.3 279.0,332.4 283.8,334.6 287.5,339.9 289.7,339.6 292.9,336.4 293.9,338.3 296.1,336.2 299.0,337.0 299.1,337.6 301.6,335.9 300.8,334.0 299.6,332.9 301.2,331.0 302.7,331.0 303.6,328.0 304.4,326.4 303.8,323.0 306.3,319.6 309.7,317.5 309.9,312.2 311.6,313.2 313.5,315.3 315.4,315.3 316.5,313.9 315.6,311.7 316.5,308.3 315.9,305.1 314.8,303.7 314.8,301.1 316.5,298.3 316.1,295.6 315.7,295.2 313.8,296.7 310.1,296.7 308.8,298.5 306.6,298.5 304.7,296.7 303.9,295.4 299.2,295.4 298.1,294.0 296.7,294.0"], "46": ["273.2,335.7 274.5,334.6 274.5,334.4 275.0,334.3 279.0,332.4 283.8,334.6 287.5,339.9 289.6,339.6 292.9,336.4 293.9,338.2 296.1,336.2 299.0,337.0 300.1,343.9 303.2,346.3 300.9,352.0 303.2,353.0 302.2,356.2 303.8,356.4 303.5,357.4 302.2,358.9 298.8,358.9 298.1,359.7 296.4,359.6 293.3,363.0 292.3,362.6 290.1,364.5 290.8,367.9 292.5,370.5 291.1,371.8 291.1,371.6 287.0,373.4 284.3,372.7 282.6,374.8 279.7,374.4 279.1,377.8 277.8,377.8 277.0,376.1 276.4,375.1 274.9,375.3 272.0,378.4 268.4,378.2 267.8,376.0 267.8,374.3 267.5,373.9 266.3,375.2 264.7,375.2 263.1,373.4 261.5,373.4 260.5,371.4 261.8,369.8 261.7,368.8 259.3,368.9 257.6,365.3 256.2,359.7 259.9,359.6 260.9,357.1 262.6,355.4 262.8,352.5 266.9,352.2 269.5,348.4 268.4,348.0 268.3,346.0 271.4,345.6 271.7,343.8 273.2,342.7 274.9,339.7 273.2,337.8"], "12": ["324.7,338.3 319.3,342.9 319.3,347.4 318.0,347.4 317.5,351.7 316.1,352.2 315.1,354.6 309.2,354.6 308.7,353.8 306.0,353.8 304.4,356.5 303.8,356.4 303.5,357.5 302.2,358.9 298.8,358.9 298.1,359.7 296.4,359.6 293.4,363.0 292.3,362.6 290.1,364.5 290.8,367.9 292.5,370.5 291.2,371.9 291.5,375.8 294.2,376.0 292.7,379.1 293.9,382.2 295.4,381.3 296.1,382.8 298.3,380.6 301.6,380.4 304.8,382.8 310.5,383.9 312.5,387.5 315.5,388.8 317.0,392.8 316.8,394.3 318.7,397.7 318.7,399.6 322.1,404.1 325.4,405.8 327.4,405.2 328.5,403.9 330.0,404.2 333.5,406.5 333.6,406.5 335.1,406.5 338.4,406.5 338.1,400.9 338.1,399.0 339.7,399.0 342.6,400.6 345.6,400.6 345.0,397.4 346.6,396.1 349.9,395.6 349.9,392.9 353.3,391.3 352.5,387.5 349.6,387.5 346.9,387.0 346.4,384.9 348.5,384.3 348.5,381.6 350.6,379.8 349.0,379.0 344.5,379.8 344.8,377.7 341.6,376.3 340.7,369.9 340.7,365.3 338.1,363.5 338.4,359.7 332.7,352.8 332.2,347.4 330.3,347.4 329.5,342.1 325.8,342.6 325.2,339.1"], "48": ["350.0,337.2 344.7,339.1 343.2,342.5 339.8,340.2 337.1,348.6 334.4,354.8 338.3,359.7 338.1,363.5 340.7,365.3 340.7,369.9 341.5,376.3 344.8,377.7 344.5,379.8 349.0,379.0 350.6,379.8 349.6,380.6 355.5,384.6 360.5,383.5 361.3,382.3 360.6,380.6 362.7,380.1 365.6,382.8 370.5,383.3 372.8,379.9 372.8,377.0 374.1,375.5 372.9,375.1 372.9,371.2 370.2,368.3 372.4,367.9 373.6,366.9 374.6,365.1 373.6,364.5 374.2,360.5 371.0,357.1 369.6,350.1 364.8,344.0 361.3,344.8 360.5,342.2 358.6,342.2 358.3,344.4 353.4,345.9"], "07": ["402.7,314.2 398.3,316.8 397.5,320.6 394.2,321.2 392.4,321.6 392.5,321.7 391.4,326.3 388.7,327.4 387.6,329.3 388.4,331.7 388.9,333.1 386.1,333.1 385.9,336.6 382.9,336.9 381.3,341.6 376.8,341.6 371.9,345.2 369.2,349.5 369.6,350.1 371.0,357.0 374.2,360.5 373.6,364.5 377.7,366.9 377.7,372.3 379.8,371.2 384.3,374.2 386.5,375.0 387.0,371.2 389.7,370.7 390.5,373.6 393.2,373.4 393.7,370.4 399.8,373.9 400.8,371.8 403.4,371.4 403.7,367.5 403.0,366.6 402.2,366.4 402.2,365.0 402.8,363.5 401.8,361.9 402.4,358.2 404.9,355.3 404.9,351.2 403.9,346.5 405.7,346.1 406.1,344.0 408.0,340.5 409.0,337.8 407.4,333.7 406.4,330.4 404.9,324.7 404.9,316.9 403.9,316.6"], "42": ["368.1,265.4 364.7,265.9 364.2,268.0 365.5,270.6 365.9,281.4 361.3,281.6 361.1,283.3 364.2,285.8 362.5,287.5 361.9,291.6 364.2,294.7 366.2,299.6 371.2,302.8 372.8,309.0 369.2,312.4 369.8,314.7 375.1,316.4 379.3,313.0 381.3,312.8 387.4,315.5 387.0,319.1 390.1,318.9 392.5,321.6 394.2,321.1 397.5,320.5 398.3,316.8 402.8,314.2 403.3,308.2 403.4,308.1 401.2,307.8 399.1,308.6 397.5,307.6 399.5,305.1 398.9,303.3 392.6,302.2 387.2,297.3 387.2,295.6 388.4,294.6 388.4,293.2 387.0,292.3 388.2,290.5 388.2,287.8 385.8,285.6 385.8,283.3 384.1,281.6 384.1,279.8 383.3,276.7 384.5,275.5 384.7,271.8 388.6,271.8 389.7,270.5 388.4,268.5 388.4,266.6 387.4,265.8 386.7,269.7 384.6,269.7 383.1,271.2 381.9,270.1 375.9,269.1 373.6,270.5 372.1,270.5 371.7,269.1 368.9,268.5 368.7,265.5"], "71": ["379.7,216.8 379.7,216.9 376.8,216.9 374.5,218.3 373.2,220.2 374.3,221.8 375.2,222.4 374.5,224.0 373.6,224.6 372.5,226.0 373.7,226.9 373.6,228.8 373.8,230.8 375.6,231.9 375.6,232.7 373.7,233.8 373.7,235.0 375.1,236.2 374.9,236.9 372.0,236.8 371.7,237.7 370.3,238.0 369.0,239.8 367.2,239.8 365.9,241.1 364.1,241.4 363.1,239.1 361.9,238.9 359.0,240.8 362.5,247.4 362.5,250.2 363.4,251.4 366.6,251.4 367.7,252.9 370.8,252.9 372.1,254.8 371.9,262.1 367.9,265.2 367.9,265.4 368.1,265.4 368.7,265.5 368.9,268.6 371.7,269.1 372.1,270.5 373.6,270.5 375.9,269.1 381.9,270.1 383.1,271.2 384.6,269.7 386.7,269.7 387.8,263.7 388.6,263.1 390.4,263.1 392.7,264.6 394.4,263.1 395.5,264.6 397.3,262.9 399.3,262.7 400.3,265.7 401.0,269.5 402.4,269.7 403.5,267.0 407.1,253.1 408.4,250.6 410.5,250.4 412.6,252.1 414.1,251.7 416.0,250.4 417.9,250.8 419.0,253.2 420.1,253.7 425.1,253.1 427.0,251.6 426.2,250.4 423.9,249.6 423.7,247.0 425.6,245.7 426.4,242.5 424.7,239.4 423.5,237.9 424.1,237.4 424.1,235.5 422.6,234.5 422.2,233.0 426.6,232.5 427.0,230.9 425.6,230.9 424.5,229.6 422.4,229.6 420.7,226.8 419.2,226.6 419.4,224.3 417.7,224.1 415.5,225.6 413.4,226.2 411.9,225.2 410.0,225.1 409.4,225.9 407.7,226.2 403.7,227.4 398.0,229.4 395.8,227.7 393.3,227.1 393.2,224.8 390.7,223.0 387.3,220.5 383.5,220.6 379.8,216.8"], "58": ["336.4,193.5 335.4,194.9 333.7,194.9 331.3,194.4 328.6,195.2 328.8,197.1 331.1,199.7 331.1,203.3 329.4,205.8 329.9,208.0 333.3,210.7 333.5,213.3 335.4,217.3 335.0,221.9 337.1,223.9 336.5,228.9 336.4,231.3 337.3,233.0 335.8,237.6 336.0,239.1 339.2,240.6 341.5,243.1 343.5,241.9 345.4,240.8 345.8,242.5 348.6,242.5 349.4,241.0 351.1,241.7 351.7,244.2 353.2,243.8 356.8,238.9 358.7,240.2 359.0,240.8 361.9,238.9 363.1,239.1 364.1,241.4 365.9,241.1 367.2,239.8 369.0,239.8 370.3,238.0 371.7,237.7 372.0,236.8 374.9,236.9 375.1,236.2 373.7,235.0 373.7,233.8 375.6,232.7 375.6,231.9 373.8,230.8 373.6,228.8 373.7,226.9 372.5,226.0 373.6,224.6 374.5,224.0 375.2,222.4 374.3,221.8 373.2,220.2 374.5,218.3 376.8,216.9 379.7,216.9 379.7,214.8 380.5,214.5 380.5,213.7 379.3,211.8 376.6,211.2 375.6,209.6 376.0,208.1 376.3,206.1 375.8,205.0 372.8,207.0 371.5,207.6 369.9,206.5 370.1,203.8 368.3,203.8 366.8,204.7 366.4,203.5 367.2,202.1 366.2,200.9 365.2,202.6 365.3,203.8 362.7,203.7 358.6,199.8 355.5,199.7 355.5,197.7 353.4,196.3 352.9,194.5 352.3,194.4 352.3,197.8 351.0,198.1 349.3,197.5 347.4,198.7 346.3,199.0 345.2,198.1 344.1,198.6 341.7,197.0 339.9,197.0 338.7,196.2 338.9,194.7 337.6,193.5 336.4,193.5"], "18": ["306.2,190.6 303.4,192.0 300.9,194.0 301.1,194.8 303.5,195.5 304.5,197.5 306.0,198.1 305.4,199.3 305.4,201.3 303.1,202.3 301.3,205.5 301.2,207.3 301.9,208.1 302.2,209.1 299.7,210.4 295.9,210.8 295.0,209.8 293.9,209.9 292.8,211.1 292.9,213.5 290.5,213.7 290.3,215.8 288.2,217.6 288.4,218.4 289.8,219.5 292.5,219.9 294.5,219.1 297.1,219.0 298.4,219.9 297.9,222.5 300.1,225.4 300.1,226.6 299.2,228.2 299.2,228.9 300.3,230.1 302.0,230.1 302.1,230.9 300.0,232.7 300.1,233.9 298.8,234.6 299.3,235.5 301.1,237.0 301.1,238.1 299.2,239.2 299.2,240.8 301.8,242.2 302.3,244.1 303.9,245.6 303.8,246.1 303.1,247.0 303.0,249.4 302.6,250.2 303.7,252.4 304.1,254.0 302.2,255.9 302.1,257.4 306.5,256.9 307.4,254.9 309.9,252.1 314.6,251.2 317.1,251.9 319.7,249.9 319.5,248.3 318.6,247.6 318.6,244.6 323.7,239.4 325.6,241.5 327.3,239.8 328.8,239.6 331.4,236.2 335.8,236.6 335.8,237.6 337.3,233.0 336.3,231.3 336.5,228.9 337.1,223.9 335.0,221.9 335.4,217.3 333.5,213.3 333.3,210.7 329.9,208.0 329.4,205.8 331.0,203.3 331.0,199.7 329.1,197.4 327.1,198.2 326.2,197.8 324.8,196.0 324.0,195.9 323.5,196.2 323.3,198.9 322.1,199.0 321.2,198.2 319.0,195.2 318.2,194.1 315.1,194.0 313.6,192.1 312.3,192.1 311.8,192.8 309.8,193.1 308.1,191.5 306.2,190.7"], "69": ["399.3,262.7 397.3,262.9 395.5,264.6 394.4,263.1 392.7,264.6 390.4,263.1 388.5,263.1 387.8,263.7 387.4,265.8 388.4,266.7 388.4,268.5 389.7,270.6 388.6,271.8 384.7,271.8 384.5,275.5 383.3,276.7 384.1,279.8 384.1,281.7 385.8,283.3 385.8,285.6 388.2,287.8 388.2,290.5 387.0,292.4 388.4,293.2 388.4,294.6 387.2,295.6 387.2,297.3 392.5,302.2 398.9,303.3 399.5,305.1 397.5,307.6 399.1,308.6 401.2,307.8 403.4,308.1 407.4,306.1 406.7,304.9 404.1,302.2 408.2,300.8 413.5,299.6 417.6,294.2 415.0,292.0 415.1,290.0 411.3,288.9 408.8,289.7 408.4,286.4 406.1,284.3 404.7,284.1 401.0,281.9 401.6,280.4 401.6,274.0 402.6,272.6 403.0,268.2 402.3,269.7 401.0,269.5 400.3,265.8"], "87": ["271.3,258.4 269.6,260.1 264.8,259.7 264.3,259.6 260.7,260.2 258.6,262.0 258.6,264.2 254.5,264.4 252.0,267.3 250.5,268.4 251.8,269.9 251.6,275.0 250.7,276.7 252.2,278.4 254.8,278.6 255.4,281.2 255.6,282.9 252.2,283.7 250.5,284.3 250.9,289.0 248.6,290.5 246.7,291.1 245.8,293.7 244.2,293.9 243.6,296.8 248.0,296.9 249.0,298.8 248.2,300.9 249.9,303.2 251.2,302.8 252.6,300.9 258.6,301.5 259.6,305.3 263.7,305.8 264.7,307.1 261.8,308.5 263.1,309.4 267.1,310.0 267.4,310.7 268.5,308.6 270.8,309.5 273.3,306.4 274.7,306.5 275.9,304.5 279.6,304.9 281.1,303.5 282.9,303.5 284.4,300.8 286.6,300.6 288.1,298.1 290.1,298.7 291.6,298.7 292.5,297.1 291.6,296.5 291.1,294.0 292.6,294.0 292.6,293.0 290.1,291.3 287.5,290.1 287.8,287.6 287.0,287.6 286.0,289.1 282.7,289.3 280.9,289.1 280.9,287.2 283.1,285.4 281.7,283.5 278.2,284.5 278.8,276.7 277.2,275.1 275.5,271.0 273.1,270.4 272.6,268.1 274.9,263.6 274.8,260.8 274.3,261.4"], "36": ["286.0,210.6 284.8,211.0 282.3,210.8 279.5,211.8 278.8,213.3 278.6,212.7 275.3,212.9 273.7,214.2 271.7,214.5 271.5,215.5 273.0,217.5 272.6,219.3 270.8,219.4 270.8,220.9 269.4,222.1 268.0,224.6 266.6,223.3 264.6,222.9 261.6,224.0 260.9,227.4 259.9,230.1 258.5,237.8 256.4,239.8 254.7,239.9 255.2,240.4 255.2,244.0 254.5,246.3 258.1,249.1 259.9,251.0 263.0,251.4 264.1,255.3 266.2,256.5 265.8,259.3 264.3,259.6 264.8,259.7 269.6,260.1 271.3,258.4 274.3,261.4 278.1,257.0 279.8,258.2 282.1,258.0 282.8,258.4 286.2,258.5 287.4,255.5 296.8,256.7 300.4,257.6 302.1,257.4 302.2,255.9 304.1,254.0 303.7,252.4 302.6,250.2 303.0,249.4 303.1,247.0 303.8,246.1 303.9,245.6 302.3,244.1 301.8,242.2 299.2,240.8 299.2,239.2 301.1,238.1 301.1,237.0 299.3,235.5 298.8,234.6 300.1,233.9 300.0,232.7 302.2,230.9 302.0,230.1 300.3,230.1 299.2,228.9 299.2,228.2 300.1,226.6 300.1,225.4 298.0,222.5 298.4,219.9 297.1,219.0 294.6,219.1 292.5,219.9 289.8,219.5 288.5,218.5 288.2,217.6 290.4,215.8 290.5,213.7 287.6,212.1"], "24": ["242.5,296.8 240.8,299.8 238.2,300.2 238.0,304.7 229.1,310.7 228.9,317.4 225.5,320.8 223.6,322.5 219.8,322.1 217.8,325.7 217.2,326.9 218.2,328.1 220.1,328.1 221.1,329.6 220.1,332.4 219.6,335.4 217.9,336.4 217.9,337.5 218.5,338.5 218.5,340.4 217.2,342.1 218.9,343.0 219.4,344.3 225.2,344.2 227.6,341.3 230.0,342.8 228.1,344.2 228.3,347.9 231.0,349.8 231.4,353.4 234.3,354.4 236.0,352.9 239.8,352.9 241.8,351.2 243.0,351.4 243.4,352.7 247.1,352.7 248.0,351.7 249.4,351.9 250.9,353.6 250.9,354.8 249.5,355.6 250.0,356.8 251.9,357.0 254.3,354.8 256.4,354.8 257.7,356.3 260.7,357.6 260.9,357.1 262.6,355.4 262.8,352.5 266.9,352.2 269.6,348.4 268.4,348.0 268.3,345.9 271.5,345.6 271.7,343.7 273.2,342.7 274.9,339.7 273.2,337.8 273.2,335.7 274.5,334.6 272.8,331.9 273.0,327.8 268.8,328.0 267.1,326.8 268.7,324.9 266.6,323.3 268.1,321.4 266.6,320.6 266.6,318.0 270.4,314.5 268.3,312.8 267.1,310.0 263.2,309.4 261.8,308.5 264.7,307.2 263.7,305.9 259.6,305.3 258.6,301.5 252.6,300.9 251.2,302.8 249.9,303.2 248.2,300.9 249.0,298.8 248.0,297.0"], "30": ["374.6,365.1 373.6,366.9 372.5,367.9 370.2,368.3 372.9,371.2 372.9,375.1 374.2,375.5 372.8,377.0 372.8,379.9 370.6,383.3 365.6,382.8 362.7,380.1 360.6,380.6 361.3,382.3 360.5,383.5 355.5,384.5 349.6,380.6 348.5,381.6 348.5,384.3 346.4,384.8 346.9,387.0 349.6,387.5 352.5,387.5 353.3,391.3 349.9,392.9 349.9,394.6 352.6,395.5 352.6,397.0 353.8,397.7 354.8,396.9 356.2,396.9 356.9,398.4 358.9,398.4 360.0,394.8 361.7,394.8 364.2,391.6 367.3,391.9 367.8,396.3 369.0,397.7 370.9,396.7 374.1,398.4 375.4,400.5 381.0,403.9 383.0,408.7 383.0,411.2 379.4,413.3 377.1,415.4 380.0,415.6 380.0,419.4 384.3,419.2 386.7,419.3 388.4,415.3 394.5,411.6 393.2,409.7 394.8,405.4 400.4,406.2 401.7,396.1 409.2,391.8 409.2,389.4 403.6,383.8 403.6,379.5 400.4,374.1 393.7,370.4 393.2,373.3 390.5,373.6 389.7,370.7 387.0,371.2 386.5,374.9 384.3,374.2 379.8,371.2 377.7,372.3 377.7,366.9"], "26": ["412.1,315.0 409.4,316.8 407.2,317.6 404.9,316.9 404.9,324.7 406.3,330.4 407.4,333.7 409.0,337.8 408.0,340.5 406.1,344.0 405.7,346.1 403.9,346.5 404.9,351.2 404.9,355.3 402.4,358.2 401.8,361.9 402.8,363.5 402.2,365.0 402.2,366.4 403.0,366.6 403.6,367.5 403.4,371.4 405.9,371.1 407.1,372.4 406.5,376.2 407.3,377.1 410.1,374.3 412.6,374.1 413.1,372.6 409.9,372.2 409.4,368.8 411.4,365.6 414.1,365.4 416.7,367.9 414.1,371.4 414.8,372.8 418.6,373.2 421.1,371.1 419.7,373.9 420.1,376.2 424.1,376.6 429.4,376.9 430.2,379.4 433.0,381.5 435.5,381.7 437.1,380.2 438.1,377.3 439.6,378.6 440.7,380.0 441.5,373.0 439.6,372.6 438.5,370.1 432.1,368.4 431.3,365.2 433.6,363.7 431.7,362.4 432.1,360.7 435.1,360.9 437.7,362.2 439.8,359.7 437.7,358.0 437.9,355.8 439.1,352.2 443.0,351.8 446.2,350.5 446.6,349.7 443.1,349.3 441.9,348.3 440.1,348.1 438.2,346.6 435.8,345.2 433.1,345.2 432.0,344.2 431.9,328.8 431.2,328.8 430.4,330.2 428.6,331.4 424.2,330.2 420.9,329.2 419.5,329.6 419.1,328.6 420.1,325.7 419.7,322.8 420.5,320.7 418.5,317.9 415.6,317.9"], "01": ["410.5,250.4 408.4,250.6 407.1,253.1 403.5,267.0 403.0,268.2 402.6,272.6 401.6,274.0 401.6,280.4 401.0,281.9 404.7,284.1 406.1,284.3 408.4,286.4 408.8,289.7 411.3,288.9 415.1,290.0 415.2,289.3 417.0,289.3 419.7,291.7 422.2,290.5 423.4,286.8 424.7,285.4 426.3,285.6 427.9,287.0 428.8,289.7 436.4,299.0 438.6,297.3 439.0,293.8 441.5,293.4 441.5,287.2 442.8,286.2 443.1,280.6 443.6,281.0 443.6,279.0 442.5,277.1 443.0,271.8 444.8,272.8 445.8,271.0 447.7,270.4 449.6,268.8 447.5,268.8 447.5,265.2 449.8,263.9 453.2,263.5 453.4,261.6 452.3,260.9 455.1,257.3 454.7,256.2 451.5,254.4 443.6,263.1 438.1,263.1 438.1,260.8 435.1,259.3 431.5,263.3 428.7,263.7 428.7,261.0 426.2,259.9 422.4,254.6 419.0,253.3 417.9,250.8 416.0,250.4 414.1,251.7 412.6,252.1"], "38": ["424.7,285.4 423.4,286.8 422.2,290.5 419.7,291.7 417.0,289.3 415.2,289.3 415.0,291.9 417.7,294.2 413.5,299.5 408.2,300.8 404.1,302.2 406.7,304.9 407.4,306.1 403.3,308.2 402.8,314.2 402.7,314.2 403.9,316.6 407.2,317.6 409.4,316.8 412.1,315.0 415.6,317.8 418.5,317.8 420.5,320.7 419.7,322.8 420.1,325.7 419.1,328.6 419.5,329.6 420.9,329.2 424.2,330.2 428.6,331.4 430.4,330.2 431.2,328.8 431.9,328.8 432.1,344.2 433.1,345.2 435.8,345.2 438.2,346.6 440.1,348.1 441.9,348.3 443.2,349.3 446.6,349.7 446.8,349.1 445.3,348.4 445.3,346.1 450.0,346.1 451.5,344.6 450.6,342.9 453.1,341.0 454.8,341.7 457.2,339.7 461.6,340.4 463.1,338.7 466.7,338.9 466.7,334.8 465.2,334.0 464.4,331.6 460.4,331.2 459.9,330.2 460.6,326.3 462.0,325.1 460.9,323.6 458.8,322.4 457.6,323.6 458.0,322.0 458.0,320.3 456.3,318.7 457.2,314.8 459.0,313.7 458.8,311.1 454.9,307.2 453.4,307.2 452.4,308.6 450.0,305.3 448.5,305.5 447.3,308.2 448.1,309.8 447.5,310.5 445.8,309.2 441.1,308.2 438.9,304.1 438.9,302.4 436.6,300.0 436.3,298.9 428.8,289.7 427.9,287.0 426.3,285.6"]}, "qr": {"n": 35, "p": "M1,1h1v1h-1zM2,1h1v1h-1zM3,1h1v1h-1zM4,1h1v1h-1zM5,1h1v1h-1zM6,1h1v1h-1zM7,1h1v1h-1zM10,1h1v1h-1zM11,1h1v1h-1zM12,1h1v1h-1zM13,1h1v1h-1zM15,1h1v1h-1zM17,1h1v1h-1zM20,1h1v1h-1zM21,1h1v1h-1zM22,1h1v1h-1zM24,1h1v1h-1zM27,1h1v1h-1zM28,1h1v1h-1zM29,1h1v1h-1zM30,1h1v1h-1zM31,1h1v1h-1zM32,1h1v1h-1zM33,1h1v1h-1zM1,2h1v1h-1zM7,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM16,2h1v1h-1zM19,2h1v1h-1zM21,2h1v1h-1zM23,2h1v1h-1zM27,2h1v1h-1zM33,2h1v1h-1zM1,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM5,3h1v1h-1zM7,3h1v1h-1zM9,3h1v1h-1zM10,3h1v1h-1zM11,3h1v1h-1zM15,3h1v1h-1zM16,3h1v1h-1zM21,3h1v1h-1zM22,3h1v1h-1zM24,3h1v1h-1zM25,3h1v1h-1zM27,3h1v1h-1zM29,3h1v1h-1zM30,3h1v1h-1zM31,3h1v1h-1zM33,3h1v1h-1zM1,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM5,4h1v1h-1zM7,4h1v1h-1zM9,4h1v1h-1zM11,4h1v1h-1zM19,4h1v1h-1zM20,4h1v1h-1zM23,4h1v1h-1zM27,4h1v1h-1zM29,4h1v1h-1zM30,4h1v1h-1zM31,4h1v1h-1zM33,4h1v1h-1zM1,5h1v1h-1zM3,5h1v1h-1zM4,5h1v1h-1zM5,5h1v1h-1zM7,5h1v1h-1zM9,5h1v1h-1zM10,5h1v1h-1zM11,5h1v1h-1zM12,5h1v1h-1zM13,5h1v1h-1zM15,5h1v1h-1zM16,5h1v1h-1zM17,5h1v1h-1zM21,5h1v1h-1zM22,5h1v1h-1zM24,5h1v1h-1zM27,5h1v1h-1zM29,5h1v1h-1zM30,5h1v1h-1zM31,5h1v1h-1zM33,5h1v1h-1zM1,6h1v1h-1zM7,6h1v1h-1zM9,6h1v1h-1zM13,6h1v1h-1zM15,6h1v1h-1zM19,6h1v1h-1zM20,6h1v1h-1zM22,6h1v1h-1zM23,6h1v1h-1zM27,6h1v1h-1zM33,6h1v1h-1zM1,7h1v1h-1zM2,7h1v1h-1zM3,7h1v1h-1zM4,7h1v1h-1zM5,7h1v1h-1zM6,7h1v1h-1zM7,7h1v1h-1zM9,7h1v1h-1zM11,7h1v1h-1zM13,7h1v1h-1zM15,7h1v1h-1zM17,7h1v1h-1zM19,7h1v1h-1zM21,7h1v1h-1zM23,7h1v1h-1zM25,7h1v1h-1zM27,7h1v1h-1zM28,7h1v1h-1zM29,7h1v1h-1zM30,7h1v1h-1zM31,7h1v1h-1zM32,7h1v1h-1zM33,7h1v1h-1zM9,8h1v1h-1zM10,8h1v1h-1zM12,8h1v1h-1zM13,8h1v1h-1zM15,8h1v1h-1zM17,8h1v1h-1zM19,8h1v1h-1zM20,8h1v1h-1zM21,8h1v1h-1zM22,8h1v1h-1zM23,8h1v1h-1zM1,9h1v1h-1zM3,9h1v1h-1zM4,9h1v1h-1zM5,9h1v1h-1zM6,9h1v1h-1zM7,9h1v1h-1zM11,9h1v1h-1zM14,9h1v1h-1zM15,9h1v1h-1zM18,9h1v1h-1zM20,9h1v1h-1zM23,9h1v1h-1zM27,9h1v1h-1zM28,9h1v1h-1zM29,9h1v1h-1zM30,9h1v1h-1zM31,9h1v1h-1zM3,10h1v1h-1zM6,10h1v1h-1zM8,10h1v1h-1zM10,10h1v1h-1zM11,10h1v1h-1zM12,10h1v1h-1zM13,10h1v1h-1zM14,10h1v1h-1zM17,10h1v1h-1zM18,10h1v1h-1zM19,10h1v1h-1zM20,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM27,10h1v1h-1zM28,10h1v1h-1zM30,10h1v1h-1zM31,10h1v1h-1zM33,10h1v1h-1zM3,11h1v1h-1zM5,11h1v1h-1zM6,11h1v1h-1zM7,11h1v1h-1zM14,11h1v1h-1zM15,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM22,11h1v1h-1zM23,11h1v1h-1zM26,11h1v1h-1zM29,11h1v1h-1zM31,11h1v1h-1zM32,11h1v1h-1zM1,12h1v1h-1zM2,12h1v1h-1zM3,12h1v1h-1zM4,12h1v1h-1zM8,12h1v1h-1zM9,12h1v1h-1zM11,12h1v1h-1zM14,12h1v1h-1zM16,12h1v1h-1zM17,12h1v1h-1zM18,12h1v1h-1zM19,12h1v1h-1zM22,12h1v1h-1zM23,12h1v1h-1zM24,12h1v1h-1zM25,12h1v1h-1zM26,12h1v1h-1zM29,12h1v1h-1zM30,12h1v1h-1zM31,12h1v1h-1zM32,12h1v1h-1zM5,13h1v1h-1zM7,13h1v1h-1zM8,13h1v1h-1zM10,13h1v1h-1zM15,13h1v1h-1zM16,13h1v1h-1zM17,13h1v1h-1zM23,13h1v1h-1zM26,13h1v1h-1zM28,13h1v1h-1zM29,13h1v1h-1zM30,13h1v1h-1zM33,13h1v1h-1zM1,14h1v1h-1zM2,14h1v1h-1zM5,14h1v1h-1zM6,14h1v1h-1zM8,14h1v1h-1zM9,14h1v1h-1zM11,14h1v1h-1zM12,14h1v1h-1zM13,14h1v1h-1zM14,14h1v1h-1zM16,14h1v1h-1zM18,14h1v1h-1zM19,14h1v1h-1zM23,14h1v1h-1zM24,14h1v1h-1zM27,14h1v1h-1zM30,14h1v1h-1zM32,14h1v1h-1zM33,14h1v1h-1zM1,15h1v1h-1zM2,15h1v1h-1zM4,15h1v1h-1zM5,15h1v1h-1zM7,15h1v1h-1zM8,15h1v1h-1zM10,15h1v1h-1zM11,15h1v1h-1zM12,15h1v1h-1zM13,15h1v1h-1zM15,15h1v1h-1zM16,15h1v1h-1zM17,15h1v1h-1zM18,15h1v1h-1zM21,15h1v1h-1zM23,15h1v1h-1zM26,15h1v1h-1zM27,15h1v1h-1zM29,15h1v1h-1zM30,15h1v1h-1zM32,15h1v1h-1zM1,16h1v1h-1zM3,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM13,16h1v1h-1zM14,16h1v1h-1zM15,16h1v1h-1zM16,16h1v1h-1zM19,16h1v1h-1zM20,16h1v1h-1zM21,16h1v1h-1zM22,16h1v1h-1zM25,16h1v1h-1zM26,16h1v1h-1zM27,16h1v1h-1zM28,16h1v1h-1zM31,16h1v1h-1zM2,17h1v1h-1zM3,17h1v1h-1zM4,17h1v1h-1zM6,17h1v1h-1zM7,17h1v1h-1zM8,17h1v1h-1zM10,17h1v1h-1zM11,17h1v1h-1zM16,17h1v1h-1zM17,17h1v1h-1zM18,17h1v1h-1zM20,17h1v1h-1zM21,17h1v1h-1zM23,17h1v1h-1zM26,17h1v1h-1zM28,17h1v1h-1zM29,17h1v1h-1zM33,17h1v1h-1zM2,18h1v1h-1zM4,18h1v1h-1zM5,18h1v1h-1zM6,18h1v1h-1zM10,18h1v1h-1zM15,18h1v1h-1zM17,18h1v1h-1zM19,18h1v1h-1zM20,18h1v1h-1zM22,18h1v1h-1zM24,18h1v1h-1zM27,18h1v1h-1zM28,18h1v1h-1zM30,18h1v1h-1zM31,18h1v1h-1zM33,18h1v1h-1zM2,19h1v1h-1zM4,19h1v1h-1zM6,19h1v1h-1zM7,19h1v1h-1zM8,19h1v1h-1zM10,19h1v1h-1zM15,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM19,19h1v1h-1zM26,19h1v1h-1zM28,19h1v1h-1zM29,19h1v1h-1zM31,19h1v1h-1zM32,19h1v1h-1zM2,20h1v1h-1zM3,20h1v1h-1zM6,20h1v1h-1zM10,20h1v1h-1zM11,20h1v1h-1zM15,20h1v1h-1zM16,20h1v1h-1zM22,20h1v1h-1zM25,20h1v1h-1zM26,20h1v1h-1zM28,20h1v1h-1zM29,20h1v1h-1zM30,20h1v1h-1zM31,20h1v1h-1zM33,20h1v1h-1zM1,21h1v1h-1zM2,21h1v1h-1zM7,21h1v1h-1zM8,21h1v1h-1zM9,21h1v1h-1zM10,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM13,21h1v1h-1zM19,21h1v1h-1zM23,21h1v1h-1zM25,21h1v1h-1zM26,21h1v1h-1zM29,21h1v1h-1zM30,21h1v1h-1zM32,21h1v1h-1zM33,21h1v1h-1zM1,22h1v1h-1zM6,22h1v1h-1zM8,22h1v1h-1zM10,22h1v1h-1zM11,22h1v1h-1zM12,22h1v1h-1zM14,22h1v1h-1zM15,22h1v1h-1zM16,22h1v1h-1zM17,22h1v1h-1zM20,22h1v1h-1zM24,22h1v1h-1zM26,22h1v1h-1zM27,22h1v1h-1zM30,22h1v1h-1zM33,22h1v1h-1zM1,23h1v1h-1zM3,23h1v1h-1zM4,23h1v1h-1zM5,23h1v1h-1zM7,23h1v1h-1zM9,23h1v1h-1zM11,23h1v1h-1zM18,23h1v1h-1zM21,23h1v1h-1zM23,23h1v1h-1zM30,23h1v1h-1zM32,23h1v1h-1zM1,24h1v1h-1zM3,24h1v1h-1zM5,24h1v1h-1zM12,24h1v1h-1zM13,24h1v1h-1zM14,24h1v1h-1zM15,24h1v1h-1zM17,24h1v1h-1zM21,24h1v1h-1zM22,24h1v1h-1zM23,24h1v1h-1zM26,24h1v1h-1zM27,24h1v1h-1zM30,24h1v1h-1zM31,24h1v1h-1zM32,24h1v1h-1zM33,24h1v1h-1zM1,25h1v1h-1zM4,25h1v1h-1zM5,25h1v1h-1zM6,25h1v1h-1zM7,25h1v1h-1zM8,25h1v1h-1zM11,25h1v1h-1zM12,25h1v1h-1zM13,25h1v1h-1zM14,25h1v1h-1zM15,25h1v1h-1zM18,25h1v1h-1zM19,25h1v1h-1zM21,25h1v1h-1zM23,25h1v1h-1zM24,25h1v1h-1zM25,25h1v1h-1zM26,25h1v1h-1zM27,25h1v1h-1zM28,25h1v1h-1zM29,25h1v1h-1zM9,26h1v1h-1zM10,26h1v1h-1zM12,26h1v1h-1zM17,26h1v1h-1zM18,26h1v1h-1zM19,26h1v1h-1zM20,26h1v1h-1zM22,26h1v1h-1zM25,26h1v1h-1zM29,26h1v1h-1zM31,26h1v1h-1zM33,26h1v1h-1zM1,27h1v1h-1zM2,27h1v1h-1zM3,27h1v1h-1zM4,27h1v1h-1zM5,27h1v1h-1zM6,27h1v1h-1zM7,27h1v1h-1zM13,27h1v1h-1zM14,27h1v1h-1zM15,27h1v1h-1zM16,27h1v1h-1zM17,27h1v1h-1zM18,27h1v1h-1zM23,27h1v1h-1zM24,27h1v1h-1zM25,27h1v1h-1zM27,27h1v1h-1zM29,27h1v1h-1zM31,27h1v1h-1zM1,28h1v1h-1zM7,28h1v1h-1zM9,28h1v1h-1zM10,28h1v1h-1zM12,28h1v1h-1zM13,28h1v1h-1zM15,28h1v1h-1zM17,28h1v1h-1zM18,28h1v1h-1zM19,28h1v1h-1zM22,28h1v1h-1zM23,28h1v1h-1zM24,28h1v1h-1zM25,28h1v1h-1zM29,28h1v1h-1zM30,28h1v1h-1zM31,28h1v1h-1zM33,28h1v1h-1zM1,29h1v1h-1zM3,29h1v1h-1zM4,29h1v1h-1zM5,29h1v1h-1zM7,29h1v1h-1zM9,29h1v1h-1zM10,29h1v1h-1zM11,29h1v1h-1zM12,29h1v1h-1zM13,29h1v1h-1zM14,29h1v1h-1zM15,29h1v1h-1zM16,29h1v1h-1zM17,29h1v1h-1zM23,29h1v1h-1zM25,29h1v1h-1zM26,29h1v1h-1zM27,29h1v1h-1zM28,29h1v1h-1zM29,29h1v1h-1zM30,29h1v1h-1zM1,30h1v1h-1zM3,30h1v1h-1zM4,30h1v1h-1zM5,30h1v1h-1zM7,30h1v1h-1zM9,30h1v1h-1zM12,30h1v1h-1zM15,30h1v1h-1zM16,30h1v1h-1zM18,30h1v1h-1zM19,30h1v1h-1zM20,30h1v1h-1zM21,30h1v1h-1zM25,30h1v1h-1zM26,30h1v1h-1zM29,30h1v1h-1zM30,30h1v1h-1zM32,30h1v1h-1zM33,30h1v1h-1zM1,31h1v1h-1zM3,31h1v1h-1zM4,31h1v1h-1zM5,31h1v1h-1zM7,31h1v1h-1zM9,31h1v1h-1zM10,31h1v1h-1zM11,31h1v1h-1zM12,31h1v1h-1zM14,31h1v1h-1zM16,31h1v1h-1zM17,31h1v1h-1zM18,31h1v1h-1zM23,31h1v1h-1zM27,31h1v1h-1zM28,31h1v1h-1zM30,31h1v1h-1zM31,31h1v1h-1zM1,32h1v1h-1zM7,32h1v1h-1zM13,32h1v1h-1zM14,32h1v1h-1zM16,32h1v1h-1zM19,32h1v1h-1zM20,32h1v1h-1zM21,32h1v1h-1zM22,32h1v1h-1zM29,32h1v1h-1zM30,32h1v1h-1zM31,32h1v1h-1zM1,33h1v1h-1zM2,33h1v1h-1zM3,33h1v1h-1zM4,33h1v1h-1zM5,33h1v1h-1zM6,33h1v1h-1zM7,33h1v1h-1zM9,33h1v1h-1zM10,33h1v1h-1zM12,33h1v1h-1zM13,33h1v1h-1zM15,33h1v1h-1zM16,33h1v1h-1zM18,33h1v1h-1zM20,33h1v1h-1zM21,33h1v1h-1zM25,33h1v1h-1zM26,33h1v1h-1zM27,33h1v1h-1zM28,33h1v1h-1zM30,33h1v1h-1zM32,33h1v1h-1z"}};
+const XLSX_B64="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";
+{
+/* liens à compléter quand la carte uMap et le questionnaire Google Forms existent */
+const UMAP_URL='https://umap.openstreetmap.fr/fr/map/musees-dauvergne_1489413';
+const GMAP_URL='https://www.google.com/maps/d/viewer?mid=1lx03EpVgDJk8LthKWT1wzRhe9AYKFNo';
+const FORM_URL='';
+
+const M=SITE.mus;
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nf=n=>n==null?'—':n.toLocaleString('fr-FR');
+const pc=e=>(e>0?'+':'')+e.toLocaleString('fr-FR',{maximumFractionDigits:1})+' %';
+const COL={'hausse':'var(--klein)','stable':'var(--mid)','baisse':'var(--down)','données incomplètes':'var(--bg)'};
+const YRS=[2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+const iY=y=>YRS.indexOf(y);
+
+/* ---------- routing ---------- */
+const views=[...document.querySelectorAll('.view')];
+const links=[...document.querySelectorAll('nav a.l')];
+const route=()=>{
+  let h=location.hash.slice(1);
+  if(!views.some(v=>v.dataset.view===h))h='accueil';
+  views.forEach(v=>v.classList.toggle('on',v.dataset.view===h));
+  links.forEach(a=>a.getAttribute('href')==='#'+h?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  window.scrollTo(0,0);
+  document.title=h==='accueil'?"Musées d'Auvergne":(links.find(a=>a.getAttribute('href')==='#'+h)?.textContent||'')+" · Musées d'Auvergne";
+};
+window.addEventListener('hashchange',route);route();
+
+/* ---------- carte ---------- */
+const towns=[];
+M.forEach((m,i)=>{let t=towns.find(t=>t.v===m.v);if(!t){t={v:m.v,d:m.d,x:m.x,y:m.y,ms:[]};towns.push(t)}t.ms.push(i)});
+const big=['Moulins','Montluçon','Vichy','Clermont-Ferrand','Thiers','Aurillac','Saint-Flour','Le Puy-en-Velay','Riom'];
+const depLab={'03':['Allier',354,262],'63':['Puy-de-Dôme',311,317],'15':['Cantal',304,350],'43':['Haute-Loire',362,346]};
+const map=document.getElementById('map');
+let filter='all',sel=towns.find(t=>t.v==='Clermont-Ferrand');
+const rad=m=>{const v=m.h[10]??m.h[5]??m.h.filter(x=>x!=null).pop()??0;return 0.6+Math.sqrt(v/90863)*2.2};
+const drawMap=()=>{
+  const W=map.clientWidth;if(!W)return;
+  const k=104/W, fs=13*k, sw=k;
+  let g='';
+  Object.values(SITE.nb).forEach(ps=>ps.forEach(p=>g+=`<polygon points="${p}" fill="var(--bg)" stroke="var(--rule)" stroke-width="${sw}"/>`));
+  Object.entries(SITE.deps).forEach(([c,ps])=>ps.forEach(p=>g+=`<polygon points="${p}" fill="var(--bg)" stroke="var(--ink)" stroke-width="${sw*1.2}"/>`));
+  Object.values(depLab).forEach(([n,x,y])=>g+=`<text x="${x}" y="${y}" style="font:italic ${fs*1.35}px 'Instrument Serif',Georgia,serif;fill:var(--soft)">${n}</text>`);
+  towns.forEach((t,ti)=>{
+    const n=t.ms.length,ring=n>1?1.5:0;
+    let dots='';
+    t.ms.forEach((mi,j)=>{
+      const m=M[mi],a=-Math.PI/2+j*2*Math.PI/n,x=t.x+ring*Math.cos(a),y=t.y+ring*Math.sin(a),r=rad(m);
+      const on=filter==='all'||m.c===filter;
+      dots+=`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${r.toFixed(2)}" fill="${COL[m.c]}" stroke="${m.c==='données incomplètes'?'var(--mid)':'var(--bg)'}" stroke-width="${m.c==='données incomplètes'?sw*1.6:sw*1.3}" opacity="${on?1:.12}"/>`;
+    });
+    const R=ring+2.9;
+    g+=`<g class="town${t===sel?' sel':''}" data-t="${ti}" tabindex="0" role="button" aria-label="${esc(t.v)}, ${n} musée${n>1?'s':''}"><circle class="halo" cx="${t.x}" cy="${t.y}" r="${R}" fill="transparent" stroke="${t===sel?'var(--klein)':'none'}" stroke-width="${sw*1.5}"/>${dots}</g>`;
+  });
+  towns.forEach(t=>{if(!big.includes(t.v)&&t!==sel)return;
+    const tw=t.v.length*fs*0.56;
+    const left=['Montluçon','Aurillac','Riom'].includes(t.v),up=['Riom','Moulins'].includes(t.v);
+    const below=t.v==='Le Puy-en-Velay';
+    const dx=below?0:left?-3.8:3.8,dy=below?2.6+fs:up?-3:1.2;
+    g+=`<text x="${t.x+dx}" y="${t.y+dy}" text-anchor="${below?'middle':left?'end':'start'}" style="font:${t===sel?600:400} ${fs}px Inter,sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:${sw*3}px">${esc(t.v)}</text>`});
+  map.innerHTML=g;
+};
+const panel=document.getElementById('panel');
+const drawPanel=()=>{
+  const t=sel;
+  let h=`<h2>${esc(t.v)}</h2><p class="dep">${esc(t.d)} · ${t.ms.length} musée${t.ms.length>1?'s':''}</p>`;
+  t.ms.forEach(mi=>{const m=M[mi];
+    const q=encodeURIComponent(m.n+' '+m.v);
+    h+=`<div class="mrow"><b>${esc(m.n)}</b><div class="nums"><span>2019 : ${nf(m.h[5])}</span><span>2020 : ${nf(m.h[6])}</span><span>2024 : ${nf(m.h[10])}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:8px"><span class="ev${m.e>0?' up':''}">${m.e==null?'<span style="font:14px Inter,sans-serif;color:var(--soft)">données incomplètes</span>':pc(m.e)}</span><a href="https://www.google.com/maps/search/?api=1&query=${q}">Voir sur Google Maps ↗</a></div></div>`});
+  panel.innerHTML=h;
+};
+map.addEventListener('click',e=>{const g=e.target.closest('.town');if(!g)return;sel=towns[+g.dataset.t];drawMap();drawPanel()});
+map.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const g=e.target.closest('.town');if(!g)return;e.preventDefault();sel=towns[+g.dataset.t];drawMap();drawPanel();map.querySelector(`[data-t="${g.dataset.t}"]`)?.focus()});
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));drawMap()}));
+const roMap=new ResizeObserver(drawMap);roMap.observe(map);drawPanel();
+const gm=document.getElementById('gmapLink');if(GMAP_URL.startsWith('https://')){gm.href=GMAP_URL;gm.hidden=false}
+const um=document.getElementById('umapLink');if(UMAP_URL.startsWith('https://')){um.href=UMAP_URL;um.hidden=false}
+const fl=document.getElementById('formLink');if(FORM_URL.startsWith('https://')){fl.href=FORM_URL;fl.hidden=false}
+
+/* ---------- chiffres : barres ---------- */
+const cmp=M.filter(m=>m.e!=null).sort((a,b)=>b.e-a.e);
+const lo=-100,hi=Math.ceil(Math.max(...cmp.map(m=>m.e))/50)*50,X=v=>(v-lo)/(hi-lo)*100;
+document.getElementById('axis').innerHTML=[-100,-50,0,50,100,150].filter(v=>v<=hi).map(v=>`<span style="left:${X(v)}%">${v>0?'+':''}${v} %</span>`).join('');
+document.getElementById('bars').innerHTML=cmp.map(m=>{const a=X(Math.min(0,m.e)),w=Math.abs(X(m.e)-X(0));
+  return `<div class="brow"><div class="nm">${esc(m.n)}<small>${esc(m.v)} · ${nf(m.h[5])} → ${nf(m.h[10])} entrées</small></div><div class="track"><span class="zero" style="left:${X(0)}%"></span><span class="bar" style="left:${a}%;width:${Math.max(w,.4)}%;background:${m.e>=0?'var(--klein)':'var(--down)'}"></span></div><div class="val">${pc(m.e)}</div></div>`}).join('');
+
+/* ---------- chiffres : départements ---------- */
+const DEP={'Puy-de-Dôme':[147240,123826,188154,161175,139680,124421,53054,65054,114434,110821,155427],'Allier':[126965,112288,128665,139938,163945,164112,92250,85410,165237,130877,136111],'Haute-Loire':[15115,12174,13112,9811,32970,54790,29484,31952,49259,79927,57394],'Cantal':[47128,42770,48242,45996,48652,42032,19283,26627,34655,35461,26505]};
+const NB={'Puy-de-Dôme':13,'Allier':9,'Haute-Loire':5,'Cantal':5};
+const depsEl=document.getElementById('deps');
+depsEl.innerHTML=Object.keys(DEP).map((k,i)=>`<div class="dcell"><h3>${k}</h3><p>${NB[k]} musées · ${nf(DEP[k][5])} entrées en 2019, ${nf(DEP[k][10])} en 2024</p><div class="sp"><svg data-d="${i}" aria-hidden="true"></svg></div></div>`).join('');
+const drawSp=()=>depsEl.querySelectorAll('svg').forEach(s=>{const W=s.clientWidth,H=s.clientHeight;if(!W)return;const a=Object.values(DEP)[+s.dataset.d],mx=Math.max(...a);
+  const x=i=>3+i*(W-6)/10,y=v=>H-4-(v/mx)*(H-10);
+  s.innerHTML=`<rect x="${x(5.5)}" y="0" width="${x(7.5)-x(5.5)}" height="${H}" fill="var(--wall)"/><path d="${a.map((v,i)=>(i?'L':'M')+x(i)+','+y(v)).join('')}" fill="none" stroke="var(--klein)" stroke-width="2"/><circle cx="${x(6)}" cy="${y(a[6])}" r="3.5" fill="var(--klein)" stroke="var(--bg)" stroke-width="1.5"/>`});
+const roSp=new ResizeObserver(drawSp);roSp.observe(depsEl);
+
+/* ---------- chiffres : tableau triable ---------- */
+const tbl=document.getElementById('tbl');
+const cols=[['Musée',m=>m.n+' · '+m.v,'t'],['2019',m=>m.h[5],'n'],['2020',m=>m.h[6],'n'],['2024',m=>m.h[10],'n'],['Évolution',m=>m.e,'n']];
+let sortC=4,sortD=-1;
+const drawTbl=()=>{
+  const rows=[...M].sort((a,b)=>{const va=cols[sortC][1](a),vb=cols[sortC][1](b);if(va==null)return 1;if(vb==null)return -1;return cols[sortC][2]==='t'?va.localeCompare(vb,'fr')*sortD:(va-vb)*sortD});
+  tbl.innerHTML=`<thead><tr>${cols.map((c,i)=>`<th scope="col"><button data-c="${i}"${i===sortC?` aria-sort="${sortD>0?'ascending':'descending'}"`:''}>${c[0]}${i===sortC?(sortD>0?' ↑':' ↓'):''}</button></th>`).join('')}</tr></thead><tbody>${rows.map(m=>`<tr><td>${esc(m.n)}<br><span style="color:var(--soft);font-size:13px">${esc(m.v)}</span></td><td>${nf(m.h[5])}</td><td>${nf(m.h[6])}</td><td>${nf(m.h[10])}</td><td class="${m.e>0?'up':''}">${m.e==null?'—':pc(m.e)}</td></tr>`).join('')}</tbody>`;
+};
+tbl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const c=+b.dataset.c;if(c===sortC)sortD*=-1;else{sortC=c;sortD=c===0?1:-1}drawTbl()});
+drawTbl();
+
+/* ---------- chronologie ---------- */
+const NAT=[64606704,61543364,58971364,61268603,65964548,65933388,23819133,31029788,62397742,68977529,71192245];
+const AUI=[100.4,87.4,112.9,104.8,105.9,100,50.5,52.2,96.1,83.4,100.6];
+const EV=[
+ [2014,'',"Début des données","64,6 millions d'entrées dans les Musées de France. En Auvergne, 30 musées communiquent leurs chiffres."],
+ [2018,'',"Un haut niveau avant la crise","66 millions d'entrées en France. Dans l'Allier, les musées dépassent 160 000 entrées, un niveau jamais atteint depuis 2014."],
+ [2019,'',"L'année de référence","65,9 millions d'entrées. C'est la dernière année normale avant le Covid : toutes les comparaisons de ce site partent d'elle."],
+ [2020,'mars 2020',"Les musées ferment","Premier confinement : tous les musées ferment leurs portes. Sur l'année, la France tombe à 23,8 millions d'entrées. L'Auvergne garde la moitié de son public, la France à peine plus d'un tiers."],
+ [2021,'mai 2021',"La réouverture","Après une nouvelle longue fermeture pendant l'hiver 2020-2021, les musées rouvrent au printemps. L'année reste très basse : 31 millions d'entrées."],
+ [2022,'',"Le public revient","62,4 millions d'entrées, presque le niveau de 2019. En Auvergne, l'indice remonte à 96."],
+ [2023,'',"Au-dessus d'avant le Covid","69 millions d'entrées en France. Mais en Auvergne, l'indice redescend à 83 : la reprise est fragile."],
+ [2024,'',"Nouveau record","71,2 millions d'entrées en France. En Auvergne, les musées suivis retrouvent tout juste leur niveau de 2019 (indice 100,6)."]];
+const fmtM=n=>(n/1e6).toLocaleString('fr-FR',{maximumFractionDigits:1})+' M';
+document.getElementById('tl').innerHTML=EV.map(([y,sub,t,p])=>{const i=iY(y);
+  return `<article class="ev2${y===2020?' key':''}"><div class="yr">${y}${sub?`<small>${sub}</small>`:''}</div><div><h3>${t}</h3><p>${p}</p></div>
+  <div class="gauge"><div class="gl"><span>France</span><span class="gt"><span style="width:${(NAT[i]/71192245*100).toFixed(1)}%;background:var(--grey)"></span></span><b>${fmtM(NAT[i])}</b></div>
+  <div class="gl"><span>Auvergne</span><span class="gt"><span style="width:${(AUI[i]/120*100).toFixed(1)}%;background:var(--klein)"></span></span><b>${AUI[i].toLocaleString('fr-FR')}</b></div></div></article>`}).join('')+
+  `<p class="msg" style="margin-top:12px">France : entrées déclarées. Auvergne : indice 100 en 2019, sur les 15 musées qui ont des chiffres chaque année.</p>`;
+
+/* ---------- questionnaire ---------- */
+const Q=[
+ ['Vous habitez :','Une seule réponse',["à Clermont-Ferrand","ailleurs dans le Puy-de-Dôme","ailleurs en Auvergne","en dehors de l'Auvergne"]],
+ ['Votre âge :','Une seule réponse',['moins de 18 ans','18-25 ans','26-40 ans','41-60 ans','plus de 60 ans']],
+ ['À quelle fréquence allez-vous au musée ?','Une seule réponse',['jamais','1 fois par an','2 à 5 fois par an','plus de 5 fois par an']],
+ ["Quels musées d'Auvergne avez-vous déjà visités ?",'Plusieurs réponses possibles',['Musée d\'art Roger Quilliot','Muséum Henri-Lecoq','Musée Bargoin','Musée de la coutellerie (Thiers)','Musée Crozatier (Le Puy-en-Velay)','autre','aucun']],
+ ['Depuis le Covid, vous allez au musée :','Une seule réponse',['plus souvent',"autant qu'avant",'moins souvent']],
+ ["Qu'est-ce qui vous donne envie d'aller au musée ?",'Plusieurs réponses possibles',['une exposition temporaire','la gratuité','une sortie entre amis ou en famille','un événement (Nuit des musées…)','les réseaux sociaux','autre']],
+ ["Qu'est-ce qui vous empêche d'y aller plus souvent ?",'Plusieurs réponses possibles',['le prix','le manque de temps','la distance ou les transports','je ne connais pas les musées près de chez moi',"ça ne m'intéresse pas"]],
+ ['Ce site vous a-t-il appris quelque chose ?','Échelle de 1 à 5',['1','2','3','4','5']]];
+document.getElementById('qs').innerHTML=Q.map(([q,k,o])=>`<div class="q"><div><h3>${esc(q)}</h3><p class="kind">${k}</p><div class="opts">${o.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div></div>`).join('');
+
+/* ---------- téléchargements ---------- */
+const msg=document.getElementById('dlmsg');
+const csv=()=>{const head=['musee','ville','departement',...YRS.map(y=>'visiteurs_'+y),'evolution_2019_2024_pct','categorie'];
+  const q=v=>{const s=v==null?'':String(v);return /[",;\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};
+  return '﻿'+[head.join(','),...M.map(m=>[m.n,m.v,m.d,...m.h,m.e,m.c].map(q).join(','))].join('\n')};
+const b64=s=>{const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
+let dl=null;
+const save=async(filename,data)=>{msg.textContent='';
+  if(!dl){try{const u=URL.createObjectURL(data),l=document.createElement('a');l.href=u;l.download=filename;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);msg.textContent='Fichier enregistré : '+filename}catch(e){msg.textContent="Le téléchargement n'a pas fonctionné."}return}
+  try{await dl.save({filename,data});msg.textContent='Fichier enregistré : '+filename}catch(e){msg.textContent="Le téléchargement a été annulé ou refusé."}};
+document.getElementById('dlx').addEventListener('click',()=>save('donnees_musees_auvergne.xlsx',new Blob([b64(XLSX_B64)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})));
+document.getElementById('dlc').addEventListener('click',()=>save('musees_auvergne_2014_2024.csv',new Blob([csv()],{type:'text/csv'})));
+if(window.claude?.use){window.claude.use('downloads').then(n=>{dl=n}).catch(()=>{})}
+
+/* ---------- QR code ---------- */
+const qn=SITE.qr.n;
+document.getElementById('qr').innerHTML=`<svg viewBox="0 0 ${qn} ${qn}" shape-rendering="crispEdges"><rect width="${qn}" height="${qn}" fill="#fff"/><path d="${SITE.qr.p}" fill="#111"/></svg>`;
+}
+
+</script>
+</body>
+</html>
